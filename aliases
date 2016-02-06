@@ -1,0 +1,19 @@
+# git
+
+alias gco='git checkout'
+alias gfa='git fetch --all'
+
+# git: alias `g` to `git`
+# if called with no arguments run `git status`
+
+unalias g
+
+g() {
+  if [[ $# > 0 ]]; then
+    git $@
+  else
+    git status
+  fi
+}
+
+compdef g=git
