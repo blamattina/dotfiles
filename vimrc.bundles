@@ -1,0 +1,10 @@
+call plug#begin('~/.vim/bundle')
+
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'croaky/vim-colors-github'
+
+if filereadable(expand("~/.vimrc.bundles.local"))
+  source ~/.vimrc.bundles.local
+endif
+
+call plug#end()

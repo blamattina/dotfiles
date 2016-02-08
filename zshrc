@@ -74,6 +74,14 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+# Load plug
+if [ ! -e "$HOME"/.vim/autoload/plug.vim ]; then
+  curl -fLo "$HOME"/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+  vim -u "$HOME"/.vimrc.bundles +PlugInstall +PlugClean! +qa
+fi
+
 # Load aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
