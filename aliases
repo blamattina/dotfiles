@@ -1,3 +1,6 @@
+# install vim plugins
+alias plug-install='vim -u "$HOME"/.vimrc.bundles +PlugInstall +PlugClean! +qa'
+
 # git
 
 alias gco='git checkout'
