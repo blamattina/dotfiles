@@ -89,10 +89,11 @@ set complete+=kspell
 set diffopt+=vertical
 
 " Startify Configuration
-let g:startify_files_number = 8
+let g:startify_files_number = 5
 let g:startify_bookmarks = [
+  \{'b': '~/src/our-boxen'},
+  \{'d': '~/dotfiles'},
   \{'v': '~/.vimrc'},
-  \{'b': '~/.vimrc.bundles'},
   \{'z': '~/.zshrc'}
   \]
 
