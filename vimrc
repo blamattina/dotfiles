@@ -88,6 +88,14 @@ set complete+=kspell
 " Always use vertical diffs
 set diffopt+=vertical
 
+" Startify Configuration
+let g:startify_files_number = 8
+let g:startify_bookmarks = [
+  \{'v': '~/.vimrc'},
+  \{'b': '~/.vimrc.bundles'},
+  \{'z': '~/.zshrc'}
+  \]
+
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
