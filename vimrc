@@ -96,6 +96,12 @@ let g:startify_bookmarks = [
   \{'z': '~/.zshrc'}
   \]
 
+" Syntastic
+let g:syntastic_javascript_checkers = ['eslint', 'flow']
+
+" show any linting errors immediately
+let g:syntastic_check_on_open = 1
+
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
