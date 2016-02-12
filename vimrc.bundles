@@ -10,7 +10,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rking/ag.vim'
 
 " Movement
-Plug 'ctoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Languages
 Plug 'scrooloose/syntastic'
