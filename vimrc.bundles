@@ -12,6 +12,10 @@ Plug 'rking/ag.vim'
 " Movement
 Plug 'christoomey/vim-tmux-navigator'
 
+" Markdown
+Plug 'itspriddle/vim-marked'
+Plug 'tpope/vim-markdown'
+
 " Languages
 Plug 'scrooloose/syntastic'
 Plug 'kchmck/vim-coffee-script'

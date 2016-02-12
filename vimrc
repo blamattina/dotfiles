@@ -102,6 +102,7 @@ let g:startify_bookmarks = [
   \]
 
 " Syntastic
+let g:syntastic_check_on_open = 1 " Show linting errors immediately
 let g:syntastic_javascript_checkers = ['eslint', 'flow']
 
 " Avoid escape
@@ -109,8 +110,9 @@ let g:syntastic_javascript_checkers = ['eslint', 'flow']
 :imap jk <Esc>
 :imap kk <Esc>
 
-" show any linting errors immediately
-let g:syntastic_check_on_open = 1
+" Markdown
+let g:markdown_fenced_languages = ['html', 'coffee', 'json', 'javascript',
+  \'js=javascript', 'python', 'bash=sh']
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
