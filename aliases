@@ -18,5 +18,7 @@ g() {
     git status
   fi
 }
-
 compdef g=git
+
+# Include custom aliases
+[[ -f ~/.aliases.local ]] && source ~/.aliases.local

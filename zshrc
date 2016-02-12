@@ -82,11 +82,14 @@ if [ ! -e "$HOME"/.vim/autoload/plug.vim ]; then
   vim -u "$HOME"/.vimrc.bundles +PlugInstall +PlugClean! +qa
 fi
 
-# Load aliases
-[[ -f ~/.aliases ]] && source ~/.aliases
-
 # Load boxen environment
 source /opt/boxen/env.sh
 
-# z
+# Load z
 . `brew --prefix`/etc/profile.d/z.sh
+
+# Load aliases
+[[ -f ~/.aliases ]] && source ~/.aliases
+
+# Local config
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
