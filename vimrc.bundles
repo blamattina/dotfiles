@@ -9,6 +9,9 @@ Plug 'itchyny/lightline.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rking/ag.vim'
 
+" Movement
+Plug 'ctoomey/vim-tmux-navigator'
+
 " Languages
 Plug 'scrooloose/syntastic'
 Plug 'kchmck/vim-coffee-script'
