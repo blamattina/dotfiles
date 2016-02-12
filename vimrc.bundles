@@ -14,6 +14,7 @@ Plug 'scrooloose/syntastic'
 Plug 'kchmck/vim-coffee-script'
 Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
+Plug 'rodjek/vim-puppet'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
