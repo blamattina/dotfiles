@@ -2,7 +2,7 @@
 alias plug-install='vim -u "$HOME"/.vimrc.bundles +PlugInstall +PlugClean! +qa'
 
 # git
-alias gd='git diff --color | diff-so-fancy | less --tabs=1,5 -R'
+alias gd='git diff --color | diff-highlight | diff-so-fancy | less --tabs=1,5 -R'
 alias gco='git checkout'
 alias gfa='git fetch --all'
 
