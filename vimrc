@@ -104,6 +104,11 @@ let g:startify_bookmarks = [
 " Syntastic
 let g:syntastic_javascript_checkers = ['eslint', 'flow']
 
+" Avoid escape
+:imap jj <Esc>
+:imap jk <Esc>
+:imap kk <Esc>
+
 " show any linting errors immediately
 let g:syntastic_check_on_open = 1
 
