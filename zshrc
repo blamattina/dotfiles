@@ -87,3 +87,6 @@ fi
 
 # Load boxen environment
 source /opt/boxen/env.sh
+
+# z
+. `brew --prefix`/etc/profile.d/z.sh
