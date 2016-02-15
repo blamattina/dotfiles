@@ -17,9 +17,12 @@ git clone https://github.com/blamattina/dotfiles.git
 rcup -d .
 ```
 
-Note: This expects `~/.gitconfig` to be controlled by [boxen][boxen] and include `gitconfig.dotfiles`
+Note: This expects `~/.gitconfig` to be controlled by [boxen][boxen] and for
+boxen include `~/.gitconfig.dotfiles` as an additional configuration file.
+([boxen configuration example][boxen-git-example])
 
 [boxen]: https://github.com/boxen/our-boxen/
+[boxen-git-example]: https://github.com/blamattina/my-boxen/commit/0cbfab174a1d33d19d5f4f207d4b503805dbf480?diff=unified
 
 ## Customizations
 Place configuration for a specific computer or environment in files with the
