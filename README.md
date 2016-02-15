@@ -20,6 +20,7 @@ Place configuration for a specific computer or environment in files with the
 
 Supported Local Files:
 - `~/.aliases.local`
+- `~/.gitconfig.local`
 - `~/.tmux.conf.local`
 - `~/.vimrc.local`
 - `~/.vimrc.bundles.local`
