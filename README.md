@@ -14,6 +14,10 @@ git clone https://github.com/blamattina/dotfiles.git
 rcup -d .
 ```
 
+Note: This expects `~/.gitconfig` to be controlled by [boxen][boxen] and include `gitconfig.dotfiles`
+
+[boxen]: https://github.com/boxen/our-boxen/
+
 ## Customizations
 Place configuration for a specific computer or environment in files with the
 `.local` extension.
