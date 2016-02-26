@@ -2,9 +2,13 @@
 alias plug-install='vim -u "$HOME"/.vimrc.bundles +PlugInstall +PlugClean! +qa'
 
 # git
-alias gd='git diff --color | diff-highlight | diff-so-fancy | less --tabs=1,5 -R'
 alias gco='git checkout'
+
+alias gd='git diff --color | diff-highlight | diff-so-fancy | less --tabs=1,5 -R'
+alias gds='git diff --color --staged | diff-highlight | diff-so-fancy | less --tabs=1,5 -R'
+
 alias gfa='git fetch --all'
+alias gpr='git pull --rebase'
 
 # git: alias `g` to `git`
 # if called with no arguments run `git status`
