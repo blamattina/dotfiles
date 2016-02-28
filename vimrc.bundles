@@ -16,6 +16,11 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'itspriddle/vim-marked'
 Plug 'tpope/vim-markdown'
 
+" Editing
+Plug 'tpope/vim-commentary'
+Plug 'ervandew/supertab'
+Plug 'terryma/vim-multiple-cursors'
+
 " Languages
 Plug 'scrooloose/syntastic'
 Plug 'kchmck/vim-coffee-script'
