@@ -21,6 +21,10 @@ Plug 'tpope/vim-commentary'
 Plug 'ervandew/supertab'
 Plug 'terryma/vim-multiple-cursors'
 
+" git
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
+
 " Languages
 Plug 'scrooloose/syntastic'
 Plug 'kchmck/vim-coffee-script'
