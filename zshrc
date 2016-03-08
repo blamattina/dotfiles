@@ -67,6 +67,9 @@ fi
 # Load boxen environment
 source /opt/boxen/env.sh
 
+# Set empty terminal title
+printf '\033]2;\033\\'
+
 # Load z
 . `brew --prefix`/etc/profile.d/z.sh
 

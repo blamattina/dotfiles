@@ -1,5 +1,14 @@
 let mapleader = " "
 
+" set terminal title
+set title
+set titleold=""
+set titlestring=vim\ %F
+
+if $TERM =~# '^\%(screen\|tmux\)'
+  let &t_ts = "\e]2;" " Set pane title in tmux
+endif
+
 set backspace=2    " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
