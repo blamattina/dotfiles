@@ -52,8 +52,22 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 
 # User configuration
+
+# Load boxen environment
+source /opt/boxen/env.sh
+
+# Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
+# Load tmuxifier: https://github.com/jimeh/tmuxifier
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
+eval "$(tmuxifier init -)"
+
+# Set empty terminal title for tmux
+printf '\033]2;\033\\'
+
+# Set editor to vim
 export EDITOR=vim
 
 # Load plug
@@ -63,12 +77,6 @@ if [ ! -e "$HOME"/.vim/autoload/plug.vim ]; then
 
   vim -u "$HOME"/.vimrc.bundles +PlugInstall +PlugClean! +qa
 fi
-
-# Load boxen environment
-source /opt/boxen/env.sh
-
-# Set empty terminal title
-printf '\033]2;\033\\'
 
 # Load z
 . `brew --prefix`/etc/profile.d/z.sh
