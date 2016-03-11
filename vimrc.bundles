@@ -30,9 +30,10 @@ Plug 'mhinz/vim-signify'
 " Languages
 Plug 'scrooloose/syntastic'
 Plug 'kchmck/vim-coffee-script'
-Plug 'pangloss/vim-javascript'
+Plug 'jelera/vim-javascript-syntax'
 Plug 'moll/vim-node'
 Plug 'rodjek/vim-puppet'
+Plug 'mustache/vim-mustache-handlebars'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
