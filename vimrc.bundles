@@ -19,6 +19,8 @@ Plug 'tpope/vim-markdown'
 " Editing
 Plug 'tpope/vim-commentary'
 Plug 'ervandew/supertab'
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'terryma/vim-multiple-cursors'
 
 " git
