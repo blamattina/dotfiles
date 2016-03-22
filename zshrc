@@ -56,6 +56,9 @@ plugins=(git)
 # Load boxen environment
 source /opt/boxen/env.sh
 
+# Load local environment
+[[ -f ~/.env ]] && export $(cat ~/.env)
+
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
