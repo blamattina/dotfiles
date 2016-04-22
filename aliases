@@ -1,6 +1,15 @@
 # install vim plugins
 alias plug-install='vim -u "$HOME"/.vimrc.bundles +PlugInstall +PlugClean! +qa'
 
+# ag
+alias ag-filenames='ag -l -G'
+alias ag-unrestricted='ag -u'
+alias ag-unrestricted-filenames='ag -u -l -G'
+
+alias agf='ag-filenames'
+alias agu='ag-unrestricted'
+alias aguf='ag-unrestricted-filenames'
+
 # git
 alias gco='git checkout'
 
