@@ -117,6 +117,10 @@ let g:startify_bookmarks = [
 let g:syntastic_check_on_open = 1 " Show linting errors immediately
 let g:syntastic_javascript_checkers = ['eslint', 'flow']
 
+" Setup Snippets
+let g:UltiSnipsSnippetsDir = $HOME.'/.vim-snippets'
+let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim-snippets']
+
 " Avoid escape
 :imap jj <Esc>
 :imap jk <Esc>
