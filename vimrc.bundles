@@ -7,6 +7,7 @@ Plug 'itchyny/lightline.vim'
 
 " Search
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'rking/ag.vim'
 
 " Movement
