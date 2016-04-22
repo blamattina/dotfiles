@@ -1,34 +1,36 @@
 call plug#begin('~/.vim/bundle')
 
-" Visual
+" visual
 Plug 'mhinz/vim-startify'
 Plug 'croaky/vim-colors-github'
 Plug 'itchyny/lightline.vim'
 
-" Search
+" search
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'rking/ag.vim'
 
-" Movement
+" movement
 Plug 'christoomey/vim-tmux-navigator'
 
-" Markdown
+" markdown
 Plug 'itspriddle/vim-marked'
 Plug 'tpope/vim-markdown'
 
-" Editing
+" editing
 Plug 'tpope/vim-commentary'
 Plug 'ervandew/supertab'
 Plug 'sirver/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'terryma/vim-multiple-cursors'
 
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 
-" Languages
+" system
+Plug 'tpope/vim-eunuch'
+
+" languages
 Plug 'scrooloose/syntastic'
 Plug 'kchmck/vim-coffee-script'
 Plug 'jelera/vim-javascript-syntax'
