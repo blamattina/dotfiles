@@ -11,8 +11,10 @@ alias agu='ag-unrestricted'
 alias aguf='ag-unrestricted-filenames'
 
 # git
+alias gl='git log --pretty=colored'
+alias glg='git log --graph --pretty=colored'
+alias gls='git log --stat --pretty=colored'
 alias gco='git checkout'
-
 alias gfa='git fetch --all'
 alias gpr='git pull --rebase'
 
