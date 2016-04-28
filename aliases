@@ -13,11 +13,18 @@ alias aguf='ag-unrestricted-filenames'
 # git
 alias gco='git checkout'
 
-alias gd='git diff --color | diff-highlight | diff-so-fancy | less --tabs=1,5 -R'
-alias gds='git diff --color --staged | diff-highlight | diff-so-fancy | less --tabs=1,5 -R'
-
 alias gfa='git fetch --all'
 alias gpr='git pull --rebase'
+
+# git + diff-so-fancy
+# https://github.com/so-fancy/diff-so-fancy
+unalias gd
+gd() {
+  git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX
+}
+alias gdc='gd --cached'
+alias gds='gd --staged'
+
 
 # git: alias `g` to `git`
 # if called with no arguments run `git status`
