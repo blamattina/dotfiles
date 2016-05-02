@@ -11,6 +11,7 @@ alias agu='ag-unrestricted'
 alias aguf='ag-unrestricted-filenames'
 
 # git
+alias gc='git commit -v'
 alias gco='git checkout'
 alias gfa='git fetch --all'
 alias gpr='git pull --rebase'
