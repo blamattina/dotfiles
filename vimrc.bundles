@@ -33,7 +33,7 @@ Plug 'tpope/vim-eunuch'
 " languages
 Plug 'scrooloose/syntastic'
 Plug 'kchmck/vim-coffee-script'
-Plug 'jelera/vim-javascript-syntax'
+Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
 Plug 'rodjek/vim-puppet'
 Plug 'mustache/vim-mustache-handlebars'
