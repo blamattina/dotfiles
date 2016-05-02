@@ -11,14 +11,21 @@ alias agu='ag-unrestricted'
 alias aguf='ag-unrestricted-filenames'
 
 # git
-alias gl='git log --pretty=colored'
-alias glg='git log --graph --pretty=colored'
-alias gls='git log --stat --pretty=colored'
 alias gco='git checkout'
 alias gfa='git fetch --all'
 alias gpr='git pull --rebase'
 
-# git + diff-so-fancy
+# git log: short
+alias gl='git log --pretty=colored'
+alias glg='gl --graph'
+alias gls='gl --stat'
+
+# git log: complete
+alias gll='git log'
+alias glgg='gll --graph'
+alias glss='gll --stat'
+
+# git dif: fancy diffs
 # https://github.com/so-fancy/diff-so-fancy
 unalias gd
 gd() {
@@ -26,7 +33,6 @@ gd() {
 }
 alias gdc='gd --cached'
 alias gds='gd --staged'
-
 
 # git: alias `g` to `git`
 # if called with no arguments run `git status`
