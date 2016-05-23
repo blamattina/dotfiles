@@ -54,13 +54,13 @@ plugins=(git)
 # User configuration
 
 # Load boxen environment
-source /opt/boxen/env.sh
+[[ -f /opt/boxen/env.sh ]] && source /opt/boxen/env.sh
 
 # Load local environment
 [[ -f ~/.env ]] && export $(cat ~/.env)
 
 # Load oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+[[ -f $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh
 
 # Load tmuxifier: https://github.com/jimeh/tmuxifier
 export PATH="$HOME/.tmuxifier/bin:$PATH"
@@ -82,7 +82,9 @@ if [ ! -e "$HOME"/.vim/autoload/plug.vim ]; then
 fi
 
 # Load z
-. `brew --prefix`/etc/profile.d/z.sh
+if [[ -f `brew --prefix`/etc/profile.d/z.sh ]]; then
+  . `brew --prefix`/etc/profile.d/z.sh
+fi
 
 # Load aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
