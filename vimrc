@@ -105,6 +105,8 @@ set complete+=kspell
 set diffopt+=vertical
 
 " Startify Configuration
+let g:ctrlp_reuse_window = 'startify'
+let g:startify_custom_header = startify#fortune#boxed()
 let g:startify_files_number = 5
 let g:startify_bookmarks = [
   \{'b': '~/src/our-boxen'},
