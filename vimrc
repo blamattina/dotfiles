@@ -63,21 +63,6 @@ set list listchars=tab:»·,trail:·,nbsp:·
 " Use one space, not two, after punctuation.
 set nojoinspaces
 
-" Improve ctrlp matches with ctrlp-py-matcher
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -Q -l -w --nocolor --hidden -g "" %s'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
-
 " Numbers
 set number
 set numberwidth=5
@@ -126,6 +111,25 @@ let g:startify_bookmarks = [
   \{'v': '~/.vimrc'},
   \{'z': '~/.zshrc'}
   \]
+
+" cntl-p configuration
+" https://github.com/kien/ctrlp.vim
+"
+" Improve ctrlp matches with ctrlp-py-matcher
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+" have cntlp reuse the startify window on startup
+let g:ctrlp_reuse_window = 'startify'
+" search the nearest ancestor w/ vcs dir
+let g:ctrlp_working_path_mode = 'r'
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag -Q -l -w --nocolor --hidden -g "" %s'
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 
 " Syntastic
 let g:syntastic_check_on_open = 1 " Show linting errors immediately
