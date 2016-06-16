@@ -102,11 +102,19 @@ set complete+=kspell
 set diffopt+=vertical
 
 " Startify Configuration
-let g:ctrlp_reuse_window = 'startify'
+" https://github.com/mhinz/vim-startify
+"
+" dont change directory when opening a file
+let g:startify_change_to_dir = 0
+" Use boxed quotes
 let g:startify_custom_header = startify#fortune#boxed()
+" Limit files in each list
 let g:startify_files_number = 5
+" Start indices from 1 instead of 0
+let g:startify_custom_indices = map(range(1,100), 'string(v:val)')
+" Links to common files
 let g:startify_bookmarks = [
-  \{'b': '~/src/our-boxen'},
+  \{'a': '~/.aliases'},
   \{'d': '~/dotfiles'},
   \{'v': '~/.vimrc'},
   \{'z': '~/.zshrc'}
