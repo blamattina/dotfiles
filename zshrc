@@ -67,6 +67,11 @@ export PATH="$HOME/.tmuxifier/bin:$PATH"
 export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
 eval "$(tmuxifier init -)"
 
+# neovim tmux navigator fix
+# https://github.com/christoomey/vim-tmux-navigator/issues/61
+infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
+tic $TERM.ti
+
 # Set empty terminal title for tmux
 printf '\033]2;\033\\'
 
