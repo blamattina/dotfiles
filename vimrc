@@ -155,6 +155,8 @@ let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim-snippets']
 " Markdown
 let g:markdown_fenced_languages = ['html', 'coffee', 'json', 'javascript',
   \'js=javascript', 'python', 'bash=sh']
+" Align GitHub-flavored Markdown tables
+au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")

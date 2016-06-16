@@ -16,6 +16,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " markdown
 Plug 'itspriddle/vim-marked'
 Plug 'tpope/vim-markdown'
+Plug 'junegunn/vim-easy-align'
 
 " editing
 Plug 'tpope/vim-commentary'
