@@ -97,11 +97,8 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
-" Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
+" Dropbox or kept in Git and managed outside of dotfiles using rcm.
 set spellfile=$HOME/.vim-spell-en.utf-8.add
-
-" Autocomplete with dictionary words when spell check is on
-set complete+=kspell
 
 " Always use vertical diffs
 set diffopt+=vertical
@@ -156,6 +153,13 @@ let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim-snippets']
 :imap jj <Esc>
 :imap jk <Esc>
 :imap kk <Esc>
+
+" Spell check
+"
+" Set spellfile to location that is guaranteed to exist, can be symlinked to
+" Dropbox or kept in Git and managed using rcm.
+set spellfile=$HOME/.vim-spell-en.utf-8.add
+set spell
 
 " Markdown
 let g:markdown_fenced_languages = ['html', 'coffee', 'json', 'javascript',
