@@ -144,6 +144,7 @@ endif
 " Syntastic
 let g:syntastic_check_on_open = 1 " Show linting errors immediately
 let g:syntastic_javascript_checkers = ['eslint', 'flow']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
 " Setup Snippets
 let g:UltiSnipsSnippetsDir = $HOME.'/.vim-snippets'
