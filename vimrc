@@ -149,6 +149,10 @@ let g:syntastic_javascript_checkers = ['eslint', 'flow']
 let g:UltiSnipsSnippetsDir = $HOME.'/.vim-snippets'
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim-snippets']
 
+" vim-jsx
+" https://github.com/mxw/vim-jsx
+let g:jsx_ext_required = 0 " Highlight jsx in .js files
+
 " Avoid escape
 :imap jj <Esc>
 :imap jk <Esc>
