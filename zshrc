@@ -75,6 +75,13 @@ tic $TERM.ti
 # Set empty terminal title for tmux
 printf '\033]2;\033\\'
 
+# Set horizontal split for tmuxifier windows
+if [ $COLUMNS -gt 200 ]; then
+  export TMUXIFIER_HORIZONTAL_SPLIT=9
+else
+  export TMUXIFIER_HORIZONTAL_SPLIT=18
+fi
+
 # Set editor to vim
 export EDITOR=vim
 
