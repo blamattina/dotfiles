@@ -26,6 +26,7 @@ Plug 'terryma/vim-multiple-cursors'
 
 " git
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'mhinz/vim-signify'
 
 " system
