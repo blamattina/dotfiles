@@ -1,5 +1,18 @@
-# install vim plugins
+# vi: ft=zsh
+
+# manage vim bundles
 alias plug-install='vim -u "$HOME"/.vimrc.bundles +PlugInstall +PlugClean! +qa'
+alias plug-update='vim -u "$HOME"/.vimrc.bundles +PlugUpdate +qa'
+
+# tmux
+alias ts="tmux start-server"
+alias tk="tmux kill-server"
+
+# tmuxifier
+# https://github.com/jimeh/tmuxifier
+alias tl="tmuxifier list"
+alias tls="tmuxifier load-session"
+alias tlw="tmuxifier load-window"
 
 # ag
 alias ag-filenames='ag -l -G'
