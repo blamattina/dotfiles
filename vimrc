@@ -1,3 +1,8 @@
+" set character encoding
+scriptencoding utf-8
+set encoding=utf-8
+
+" set leader to space
 let mapleader = " "
 
 " set terminal title
@@ -43,7 +48,7 @@ if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
-" Colorscheme
+" Color scheme
 colorscheme github
 
 " Make it obvious where 80 characters is
@@ -51,13 +56,13 @@ set textwidth=80
 set colorcolumn=+1
 highlight ColorColumn ctermbg=255 guibg=#ECECEC
 
-" Softtabs, 2 spaces
+" Soft tabs, 2 spaces
 set tabstop=2
 set shiftwidth=2
 set shiftround
 set expandtab
 
-" Display extra whitespace
+" Display extra white space
 set list listchars=tab:»·,trail:·,nbsp:·
 
 " Use one space, not two, after punctuation.
