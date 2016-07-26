@@ -147,8 +147,8 @@ let g:syntastic_javascript_checkers = ['eslint', 'flow']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
 " Setup Snippets
-let g:UltiSnipsSnippetsDir = $HOME.'/.vim-snippets'
-let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim-snippets']
+let g:UltiSnipsSnippetsDir = $HOME.'/.vim/snippets'
+let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/snippets']
 
 " vim-jsx
 " https://github.com/mxw/vim-jsx
