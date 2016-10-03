@@ -36,6 +36,7 @@ cask 'polymail'
 cask 'spectacle'
 cask 'sketch'
 cask 'xscope'
+cask 'zeplin'
 
 # Mac App Store
 mas '2do', id: 477670270
