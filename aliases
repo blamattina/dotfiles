@@ -1,5 +1,8 @@
 # vi: ft=zsh
 
+# a brand new day
+alias vim="nvim"
+
 # manage vim bundles
 alias plug-install='vim -u "$HOME"/.vimrc.bundles +PlugInstall +PlugClean! +qa'
 alias plug-update='vim -u "$HOME"/.vimrc.bundles +PlugUpdate +qa'
