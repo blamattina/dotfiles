@@ -171,6 +171,22 @@ let g:markdown_fenced_languages = ['html', 'coffee', 'json', 'javascript',
 " Align GitHub-flavored Markdown tables
 au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
+" Trim Whitespace
+function! PreservePosition(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Execute:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+
+autocmd BufWritePre * :call PreservePosition("%s/\\s\\+$//e")
+autocmd BufWritePre * :call PreservePosition("%!cat -s")
+
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
