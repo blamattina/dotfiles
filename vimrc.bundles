@@ -42,6 +42,9 @@ Plug 'rodjek/vim-puppet'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-jdaddy'
 
+" Neovim
+Plug 'neomake/neomake'
+
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
 endif

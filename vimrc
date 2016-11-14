@@ -49,7 +49,7 @@ if filereadable(expand("~/.vimrc.bundles"))
 endif
 
 " Color scheme
-colorscheme github
+color github
 
 " Make it obvious where 80 characters is
 set textwidth=80
@@ -141,10 +141,9 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-" Syntastic
-let g:syntastic_check_on_open = 1 " Show linting errors immediately
-let g:syntastic_javascript_checkers = ['eslint', 'flow']
-let g:syntastic_javascript_eslint_exec = 'eslint_d'
+" Neomake
+autocmd BufWritePost,BufEnter,InsertLeave,TextChanged * nested update | Neomake
+let g:neomake_javascript_enabled_makers = ['eslint']
 
 " Setup Snippets
 let g:UltiSnipsSnippetsDir = $HOME.'/.vim/snippets'
