@@ -21,7 +21,6 @@ Plug 'junegunn/vim-easy-align'
 " editing
 Plug 'tpope/vim-commentary'
 Plug 'ervandew/supertab'
-Plug 'sirver/ultisnips'
 Plug 'terryma/vim-multiple-cursors'
 
 " git
