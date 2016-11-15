@@ -145,10 +145,6 @@ endif
 autocmd BufWritePost,BufEnter,InsertLeave,TextChanged * nested update | Neomake
 let g:neomake_javascript_enabled_makers = ['eslint']
 
-" Setup Snippets
-let g:UltiSnipsSnippetsDir = $HOME.'/.vim/snippets'
-let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/snippets']
-
 " vim-jsx
 " https://github.com/mxw/vim-jsx
 let g:jsx_ext_required = 0 " Highlight jsx in .js files
@@ -171,21 +167,31 @@ let g:markdown_fenced_languages = ['html', 'coffee', 'json', 'javascript',
 " Align GitHub-flavored Markdown tables
 au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
-" Trim Whitespace
-function! PreservePosition(command)
-  " Preparation: save last search, and cursor position.
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  " Execute:
-  execute a:command
-  " Clean up: restore previous search history, and cursor position
-  let @/=_s
-  call cursor(l, c)
+" Normalize white space
+function! NormalizeWhitespace()
+  " Save search and cursor position
+  let last_search = @/
+  let line = line(".")
+  let col = col(".")
+
+  " Remove trailing whitespace
+  " Source: http://vim.wikia.com/wiki/Remove_unwanted_spaces
+  %s#\\s\\+$##e"
+
+  " Remove extra blank lines
+  " Source: http://unix.stackexchange.com/questions/12812
+  %!cat -s
+
+  " Remove extra blank lines at end of file
+  " Source: http://stackoverflow.com/questions/7495932
+  %s#\($\n\s*\)\+\%$##e
+
+  " Restore search and cursor position
+  let @/ = last_search
+  call cursor(line, col)
 endfunction
 
-autocmd BufWritePre * :call PreservePosition("%s/\\s\\+$//e")
-autocmd BufWritePre * :call PreservePosition("%!cat -s")
+autocmd BufWritePre * :call NormalizeWhitespace()
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
