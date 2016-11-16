@@ -142,7 +142,7 @@ if executable('ag')
 endif
 
 " Neomake
-autocmd BufWritePost,BufEnter,InsertLeave,TextChanged * nested update | Neomake
+autocmd BufWritePost,BufEnter * Neomake
 let g:neomake_javascript_enabled_makers = ['eslint']
 
 " vim-jsx
