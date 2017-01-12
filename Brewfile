@@ -17,7 +17,6 @@ brew 'z'
 # Editors
 tap 'neovim/neovim'
 brew 'neovim'
-brew 'vim', args: ['override-system-vim']
 brew 'ctags'
 
 # Casks
@@ -26,20 +25,15 @@ cask '1password'
 cask 'aerial'
 cask 'alfred'
 cask 'caffeine'
-cask 'dash'
+cask 'cloud'
 cask 'dropbox'
-cask 'go'
+cask 'flux'
 cask 'google-chrome'
-cask 'intellij-idea'
 cask 'marked'
-cask 'polymail'
+cask 'rescuetime'
 cask 'spectacle'
 cask 'sketch'
-cask 'xscope'
 cask 'zeplin'
 
 # Mac App Store
-mas '2do', id: 477670270
-mas 'CloudApp', id: 417602904
 mas 'Fantastical 2', id: 975937182
-mas 'Ominfocus 2', id: 867299399
