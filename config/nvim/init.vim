@@ -44,8 +44,8 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
 endif
 
 " Load bundles
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
+if filereadable(expand("~/.config/nvim/bundles.vim"))
+  source ~/.config/nvim/bundles.vim
 endif
 
 " Color scheme
@@ -194,6 +194,6 @@ endfunction
 autocmd BufWritePre * :call NormalizeWhitespace()
 
 " Local config
-if filereadable($HOME . "/.vimrc.local")
-  source ~/.vimrc.local
+if filereadable($HOME . "/.config/nvim/init.local.vim")
+  source ~/.config/nvim/init.local.vim
 endif

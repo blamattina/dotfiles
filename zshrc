@@ -83,14 +83,14 @@ else
 fi
 
 # Set editor to vim
-export EDITOR=vim
+export EDITOR=nvim
 
 # Load plug
-if [ ! -e "$HOME"/.vim/autoload/plug.vim ]; then
-  curl -fLo "$HOME"/.vim/autoload/plug.vim --create-dirs \
+if [ ! -e "$HOME"/.config/nvim/autoload/plug.vim ]; then
+  curl -fLo "$HOME"/.config/nvim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-  vim -u "$HOME"/.vimrc.bundles +PlugInstall +PlugClean! +qa
+  vim -u "$HOME"/.config/nvim/bundles.vim +PlugInstall +PlugClean! +qa
 fi
 
 # Load z
