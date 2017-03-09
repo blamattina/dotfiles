@@ -47,7 +47,7 @@ alias glss='gll --stat'
 git-safety-dance() {
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   TIMESTAMP=$(date +%s)
-  git checkout -b "${BRANCH}-backup-${TIMESTAMP}"
+  git checkout -b "${BRANCH}-backup-${TIMESTAMP}" &&
   git checkout -
 }
 alias gsd='git-safety-dance'

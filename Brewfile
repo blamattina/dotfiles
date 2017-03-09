@@ -6,9 +6,10 @@ brew 'mas' # Mac App Store cli
 
 # Shell Utilities
 brew 'ag'
-brew 'tag-ag'
 brew 'diff-so-fancy'
+brew 'fzf'
 brew 'gnu-sed'
+brew 'tag-ag'
 brew 'tmux'
 brew 'tree'
 brew 'wget'
