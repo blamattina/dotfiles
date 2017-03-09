@@ -42,6 +42,16 @@ alias gll='git log'
 alias glgg='gll --graph'
 alias glss='gll --stat'
 
+# git-safety-dance: stash a copy of the current branch
+# related https://xkcd.com/1296/
+git-safety-dance() {
+  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  TIMESTAMP=$(date +%s)
+  git checkout -b "${BRANCH}-backup-${TIMESTAMP}"
+  git checkout -
+}
+alias gsd='git-safety-dance'
+
 # diff-so-fancy
 # https://github.com/so-fancy/diff-so-fancy
 pipe-git-command-to-diff-so-fancy () {
