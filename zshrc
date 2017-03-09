@@ -98,3 +98,8 @@ fi
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+if (( $+commands[tag] )); then
+  tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
+  alias ag=tag
+fi
