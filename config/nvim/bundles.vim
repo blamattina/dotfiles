@@ -33,12 +33,12 @@ Plug 'tpope/vim-eunuch'
 
 " JavaScript
 Plug 'moll/vim-node'
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
-Plug 'mtscout6/vim-cjsx', { 'for': 'coffee' }
+Plug 'kchmck/vim-coffee-script'
+Plug 'mtscout6/vim-cjsx'
 Plug 'digitaltoad/vim-jade'
-Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
-Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'markdown'] }
+Plug 'othree/yajs.vim', { 'for': ['javascript', 'markdown'] }
+Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'markdown'] }
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-jdaddy'
 if executable('node')
