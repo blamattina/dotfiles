@@ -21,7 +21,7 @@ Plug 'junegunn/vim-easy-align'
 " editing
 Plug 'tpope/vim-commentary'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -41,9 +41,8 @@ Plug 'othree/yajs.vim', { 'for': ['javascript', 'markdown'] }
 Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'markdown'] }
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-jdaddy'
-if executable('node')
-  Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': ['javascript', 'coffee'] }
-endif
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'ternjs/tern_for_vim'
 
 " languages
 Plug 'rodjek/vim-puppet'

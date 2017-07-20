@@ -161,6 +161,13 @@ let g:jsx_ext_required = 0 " Highlight jsx in .js files
 set spellfile=$HOME/.vim-spell-en.utf-8.add
 set spell
 
+" deoplete
+call deoplete#enable()
+
+" deoplete-ternjs
+let g:tern#command = ["tern"]
+let g:tern#filetypes = ['jsx', 'javascript.jsx']
+
 " Markdown
 let g:markdown_fenced_languages = ['html', 'coffee', 'json', 'javascript',
   \'js=javascript', 'python', 'bash=sh']
