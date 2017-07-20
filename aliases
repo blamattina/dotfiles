@@ -52,6 +52,19 @@ git-safety-dance() {
 }
 alias gsd='git-safety-dance'
 
+git-list-merged-branches() {
+  git checkout master --quiet &&
+  git branch --merged |
+  grep -v "\*"
+}
+alias glmb='git-list-merged-branches'
+
+git-delete-merged-branches() {
+  git-list-merged-branches |
+  xargs -n 1 git branch -d
+}
+alias gdmb='git-delete-merged-branches'
+
 # diff-so-fancy
 # https://github.com/so-fancy/diff-so-fancy
 pipe-git-command-to-diff-so-fancy () {
