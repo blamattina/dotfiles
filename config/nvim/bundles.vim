@@ -19,6 +19,7 @@ Plug 'tpope/vim-markdown'
 Plug 'junegunn/vim-easy-align'
 
 " editing
+Plug 'w0rp/ale'
 Plug 'tpope/vim-commentary'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -46,9 +47,6 @@ Plug 'ternjs/tern_for_vim'
 
 " languages
 Plug 'rodjek/vim-puppet'
-
-" Neovim
-Plug 'neomake/neomake'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local

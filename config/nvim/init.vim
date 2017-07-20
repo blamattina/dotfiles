@@ -141,9 +141,17 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-" Neomake
-autocmd BufWritePost,BufEnter * Neomake
-let g:neomake_javascript_enabled_makers = ['eslint']
+" ale
+" https://github.com/w0rp/ale
+
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
+
+let g:ale_linters = {}
+let g:ale_linters['javascript'] = ['eslint']
+
+let g:ale_fix_on_save = 1
 
 " vim-jsx
 " https://github.com/mxw/vim-jsx
