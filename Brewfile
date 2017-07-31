@@ -2,14 +2,16 @@
 # Configuration Management
 tap 'thoughtbot/formulae'
 brew 'rcm'
+
 brew 'mas' # Mac App Store cli
+
+brew 'python3'
 
 # Shell Utilities
 brew 'ag'
 brew 'diff-so-fancy'
 brew 'fzf'
 brew 'gnu-sed'
-brew 'tag-ag'
 brew 'tmux'
 brew 'tree'
 brew 'wget'
@@ -19,7 +21,9 @@ brew 'z'
 # Editors
 tap 'neovim/neovim'
 brew 'neovim'
-brew 'ctags'
+
+tap 'aykamko/tag-ag'
+brew 'tag-ag'
 
 # Casks
 tap 'caskroom/cask'

@@ -1,0 +1,12 @@
+echo "Installing rcm....\n"
+
+brew tap thoughtbot/formulae
+brew install rcm
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DOTFILES_DIR=${DIR/\/scripts/}
+
+echo "\nLinking config files in ${DOTFILES_DIR}...\n"
+
+rcup -vd ${DOTFILES_DIR} rcrc
+rcup -vd ${DOTFILES_DIR}

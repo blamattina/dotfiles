@@ -1,1 +1,1 @@
-EXCLUDES="*:README.md *:LICENSE *:Brewfile *:*.example *:scripts"
+EXCLUDES="README.md LICENSE *.example scripts/*"
