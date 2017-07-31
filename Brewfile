@@ -44,3 +44,4 @@ cask 'zeplin'
 
 # Mac App Store
 mas 'Fantastical 2', id: 975937182
+mas 'Things 3', id: 904280696
