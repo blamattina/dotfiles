@@ -1,4 +1,6 @@
-echo "Installing rcm....\n"
+# vi: ft=bash
+
+echo "Installing rcm...\n"
 
 brew tap thoughtbot/formulae
 brew install rcm
@@ -6,7 +8,18 @@ brew install rcm
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOTFILES_DIR=${DIR/\/scripts/}
 
-echo "\nLinking config files in ${DOTFILES_DIR}...\n"
+echo "Linking config files in ${DOTFILES_DIR}... \n"
 
 rcup -vd ${DOTFILES_DIR} rcrc
 rcup -vd ${DOTFILES_DIR}
+
+if ! [ -d "$HOME/.oh-my-zsh" ]; then
+  echo "Setting up oh-my-zsh...\n"
+  git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
+fi
+
+if ! [ -d "$HOME/.tmuxifier" ]; then
+  echo "Setting up tmuxifier...\n"
+  git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
+fi
