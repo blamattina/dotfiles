@@ -1,22 +1,26 @@
 # vi: ft=bash
 
+print_message() {
+ echo "\n🤘 $@"
+}
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOTFILES_DIR=${DIR/\/scripts/}
 
-echo "Unlinking config files in ${DOTFILES_DIR}... \n"
+print_message "Unlinking config files in ${DOTFILES_DIR}"
 
-rcdn -vd ${DOTFILES_DIR}
+rcdn -d ${DOTFILES_DIR}
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
-  echo "Removing oh-my-zsh...\n"
+  print_message "Removing oh-my-zsh"
   rm -rf "$HOME/.oh-my-zsh"
 
 fi
 
 if  [ -d "$HOME/.tmuxifier" ]; then
-  echo "Removing tmuxifier...\n"
+  print_message "Removing tmuxifier"
   rm -rf "$HOME/.tmuxifier"
 fi
 
-echo "Removing rcm...\n"
+print_message "Removing rcm"
 brew uninstall rcm

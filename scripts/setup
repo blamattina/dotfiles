@@ -1,6 +1,10 @@
 # vi: ft=bash
 
-echo "Installing rcm...\n"
+print_message() {
+ echo "\n🤘 $@"
+}
+
+print_message "Installing rcm..."
 
 brew tap thoughtbot/formulae
 brew install rcm
@@ -8,18 +12,18 @@ brew install rcm
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOTFILES_DIR=${DIR/\/scripts/}
 
-echo "Linking config files in ${DOTFILES_DIR}... \n"
+print_message "Linking config files in ${DOTFILES_DIR}"
 
-rcup -vd ${DOTFILES_DIR} rcrc
-rcup -vd ${DOTFILES_DIR}
+rcup -d ${DOTFILES_DIR} rcrc
+rcup -d ${DOTFILES_DIR}
 
 if ! [ -d "$HOME/.oh-my-zsh" ]; then
-  echo "Setting up oh-my-zsh...\n"
-  git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+  print_message "Setting up oh-my-zsh"
+  git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh --quiet
 
 fi
 
 if ! [ -d "$HOME/.tmuxifier" ]; then
-  echo "Setting up tmuxifier...\n"
-  git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
+  print_message "Setting up tmuxifier"
+  git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier --quiet
 fi
