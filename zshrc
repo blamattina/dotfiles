@@ -93,6 +93,10 @@ if [[ -f `brew --prefix`/etc/profile.d/z.sh ]]; then
   . `brew --prefix`/etc/profile.d/z.sh
 fi
 
+if [[ -f `brew --prefix`/bin/nodenv ]]; then
+  eval "$(`brew --prefix`/bin/nodenv init -)"
+fi
+
 # Load aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 

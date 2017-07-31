@@ -5,6 +5,8 @@ brew 'rcm'
 
 brew 'mas' # Mac App Store cli
 
+brew 'node'
+brew 'nodenv'
 brew 'python3'
 
 # Shell Utilities
