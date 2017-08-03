@@ -40,7 +40,8 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'mhinz/vim-signify'
+Plug 'jreybert/vimagit'
+Plug 'airblade/vim-gitgutter'
 
 " system
 Plug 'tpope/vim-eunuch'
