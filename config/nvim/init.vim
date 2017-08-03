@@ -50,6 +50,7 @@ endif
 
 " Color scheme
 color github
+let g:airline_theme='base16'
 
 " Make it obvious where 80 characters is
 set textwidth=80

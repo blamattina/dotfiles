@@ -3,7 +3,8 @@ call plug#begin('~/.vim/bundle')
 " visual
 Plug 'mhinz/vim-startify'
 Plug 'croaky/vim-colors-github'
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " search
 Plug 'ctrlpvim/ctrlp.vim'
