@@ -37,6 +37,17 @@ vnoremap // y/<C-R>"<CR>
 " Clear the highlighted search terms with "//"
 nnoremap // :nohlsearch<Bar>:echo<CR>
 
+" Terminal mode
+"
+" Use escape to return to normal mode:
+:tnoremap <Esc> <C-\><C-n> 
+
+" Use `CTRL+{h,j,k,l}` to navigate in terminal mode:
+:tnoremap <C-h> <C-\><C-N><C-w>h
+:tnoremap <C-j> <C-\><C-N><C-w>j
+:tnoremap <C-k> <C-\><C-N><C-w>k
+:tnoremap <C-l> <C-\><C-N><C-w>l
+
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
