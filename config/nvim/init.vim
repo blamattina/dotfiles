@@ -40,7 +40,7 @@ nnoremap // :nohlsearch<Bar>:echo<CR>
 " Terminal mode
 "
 " Use escape to return to normal mode:
-:tnoremap <Esc> <C-\><C-n> 
+:tnoremap <Esc> <C-\><C-n>
 
 " Use `CTRL+{h,j,k,l}` to navigate in terminal mode:
 :tnoremap <C-h> <C-\><C-N><C-w>h
