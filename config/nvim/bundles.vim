@@ -44,6 +44,10 @@ Plug 'tpope/vim-rhubarb'
 Plug 'jreybert/vimagit'
 Plug 'airblade/vim-gitgutter'
 
+" Asynchronous jobs
+Plug 'tpope/vim-dispatch'
+Plug 'radenling/vim-dispatch-neovim'
+
 " system
 Plug 'tpope/vim-eunuch'
 
