@@ -108,10 +108,6 @@ nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
-" Set spellfile to location that is guaranteed to exist, can be symlinked to
-" Dropbox or kept in Git and managed outside of dotfiles using rcm.
-set spellfile=$HOME/.vim-spell-en.utf-8.add
-
 " Always use vertical diffs
 set diffopt+=vertical
 
@@ -166,6 +162,9 @@ let g:ale_linters['javascript'] = ['eslint']
 
 let g:ale_fix_on_save = 1
 
+let g:ale_sign_error = '✖︎'
+let g:ale_sign_warning = '⚠️'
+
 " vim-jsx
 " https://github.com/mxw/vim-jsx
 let g:jsx_ext_required = 0 " Highlight jsx in .js files
@@ -188,6 +187,12 @@ call deoplete#enable()
 " deoplete-ternjs
 let g:tern#command = ["tern"]
 let g:tern#filetypes = ['jsx', 'javascript.jsx']
+
+" Whether to include documentation strings (if found) in the result data.
+let g:deoplete#sources#ternjs#docs = 1
+
+" Whether to include the types of the completions in the result data. Default: 0
+let g:deoplete#sources#ternjs#types = 1
 
 " Markdown
 let g:markdown_fenced_languages = ['html', 'coffee', 'json', 'javascript',
@@ -219,7 +224,10 @@ function! NormalizeWhitespace()
   call cursor(line, col)
 endfunction
 
-autocmd BufWritePre * :call NormalizeWhitespace()
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * :call NormalizeWhitespace()
+augroup END
 
 " Local config
 if filereadable($HOME . "/.config/nvim/init.local.vim")
