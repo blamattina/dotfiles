@@ -60,8 +60,18 @@ if filereadable(expand("~/.config/nvim/bundles.vim"))
 endif
 
 " Color scheme
-color github
-let g:airline_theme='base16'
+color one
+set background=light
+
+if (has("gui_running"))
+  set termguicolors
+endif
+
+" Status line
+let g:airline_theme="one"
+let g:airline_detect_spell=0
+let g:airline#extensions#hunks#enabled=0
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 
 " Make it obvious where 80 characters is
 set textwidth=80

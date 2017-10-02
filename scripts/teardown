@@ -1,4 +1,4 @@
-# vi: ft=bash
+# vi: ft=sh
 
 print_message() {
  echo "\n🤘 $@"
