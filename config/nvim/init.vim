@@ -193,6 +193,8 @@ set spell
 
 " deoplete
 call deoplete#enable()
+" Use <tab> to complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " deoplete-ternjs
 let g:tern#command = ["tern"]
