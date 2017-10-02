@@ -9,7 +9,7 @@ Plug 'vim-airline/vim-airline-themes'
 " search
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'FelikZ/ctrlp-py-matcher'
-Plug 'rking/ag.vim'
+Plug 'mileszs/ack.vim'
 
 " movement
 Plug 'christoomey/vim-tmux-navigator'

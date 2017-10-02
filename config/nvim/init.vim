@@ -135,6 +135,7 @@ let g:ctrlp_working_path_mode = 'r'
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep
+  let g:ackprg = 'ag --vimgrep' " Use ag in ack.vim
   set grepprg=ag\ --nogroup\ --nocolor
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag -Q -l -w --nocolor --hidden -g "" %s'
