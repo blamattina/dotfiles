@@ -38,32 +38,21 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('SetupDeoplete')  }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 " git
+Plug 'airblade/vim-gitgutter'
+Plug 'jreybert/vimagit'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'jreybert/vimagit'
-Plug 'airblade/vim-gitgutter'
 
 " Asynchronous jobs
-Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
-
-" system
-Plug 'tpope/vim-eunuch'
-
-" JavaScript
-Plug 'moll/vim-node'
-Plug 'kchmck/vim-coffee-script'
-Plug 'mtscout6/vim-cjsx'
-Plug 'digitaltoad/vim-jade'
-Plug 'mxw/vim-jsx', { 'for': ['javascript', 'markdown'] }
-Plug 'othree/yajs.vim', { 'for': ['javascript', 'markdown'] }
-Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'markdown'] }
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'tpope/vim-jdaddy'
-Plug 'ternjs/tern_for_vim'
+Plug 'tpope/vim-dispatch'
 
 " languages
-Plug 'rodjek/vim-puppet'
+Plug 'digitaltoad/vim-jade'
+Plug 'sheerun/vim-polyglot'
+Plug 'ternjs/tern_for_vim'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-jdaddy'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
