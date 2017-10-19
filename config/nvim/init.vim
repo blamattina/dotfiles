@@ -60,23 +60,68 @@ if filereadable(expand("~/.config/nvim/bundles.vim"))
 endif
 
 " Color scheme
-color one
-set background=light
-
-if (has("gui_running"))
+if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+if (has("termguicolors"))
   set termguicolors
 endif
 
-" Status line
-let g:airline_theme="one"
-let g:airline_detect_spell=0
-let g:airline#extensions#hunks#enabled=0
-let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+color one
+set background=light
 
-" Make it obvious where 80 characters is
-set textwidth=80
-set colorcolumn=+1
-highlight ColorColumn ctermbg=255 guibg=#ECECEC
+" Lightline
+let g:lightline = {
+\ 'colorscheme': 'wombat',
+\ 'active': {
+\   'left': [['mode', 'paste'], ['filename', 'modified']],
+\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\ },
+\ 'component_expand': {
+\   'linter_warnings': 'LightlineLinterWarnings',
+\   'linter_errors': 'LightlineLinterErrors',
+\   'linter_ok': 'LightlineLinterOK'
+\ },
+\ 'component_type': {
+\   'readonly': 'error',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error'
+\ },
+\ }
+
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+
+autocmd User ALELint call s:MaybeUpdateLightline()
+
+" Update and show lightline but only if it's visible (e.g., not in Goyo)
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
 
 " Soft tabs, 2 spaces
 set tabstop=2
@@ -165,19 +210,29 @@ endif
 
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
-let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
-
+let g:ale_fixers['json'] = ['prettier']
+let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_linters = {}
 let g:ale_linters['javascript'] = ['eslint']
+let g:ale_linters['json'] = ['jsonlint']
 
 let g:ale_fix_on_save = 1
 
 let g:ale_sign_error = '✖︎'
 let g:ale_sign_warning = '⚠️'
 
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
+
+" GitGutter
+let g:gitgutter_sign_added = '∙'
+let g:gitgutter_sign_modified = '∙'
+let g:gitgutter_sign_removed = '∙'
+let g:gitgutter_sign_modified_removed = '∙'
+
 " vim-jsx
 " https://github.com/mxw/vim-jsx
-let g:jsx_ext_required = 0 " Highlight jsx in .js files
+autocmd BufNewFile,BufRead *.js set ft=javascript.jsx
 
 " Avoid escape
 :imap jj <Esc>
