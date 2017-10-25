@@ -74,6 +74,12 @@ endif
 color one
 set background=light
 
+" Improve diff colors
+hi diffadd gui=none guifg=none guibg=#bada9f
+hi diffchange gui=none guifg=none guibg=#e5d5ac
+hi diffdelete gui=bold guifg=#ff8080 guibg=#ffb0b0
+hi difftext gui=none guifg=none guibg=#8cbee2
+
 " Lightline
 let g:lightline = {
 \ 'colorscheme': 'wombat',
