@@ -6,9 +6,9 @@ Plug 'rakr/vim-one'
 Plug 'itchyny/lightline.vim'
 
 " search
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'mileszs/ack.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " movement
 Plug 'christoomey/vim-tmux-navigator'

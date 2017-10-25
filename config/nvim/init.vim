@@ -180,30 +180,37 @@ let g:startify_custom_indices = map(range(1,100), 'string(v:val)')
 " Links to common files
 let g:startify_bookmarks = [
   \{'a': '~/.aliases'},
-  \{'d': '~/dotfiles'},
-  \{'v': '~/.vimrc'},
+  \{'b': '~/.config/nvim/bundles.vim'},
+  \{'i': '~/.config/nvim/init.vim'},
   \{'z': '~/.zshrc'}
   \]
 
-" cntl-p configuration
-" https://github.com/kien/ctrlp.vim
-"
-" Improve ctrlp matches with ctrlp-py-matcher
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-" have cntlp reuse the startify window on startup
-let g:ctrlp_reuse_window = 'startify'
-" search the nearest ancestor w/ vcs dir
-let g:ctrlp_working_path_mode = 'r'
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  let g:ackprg = 'ag --vimgrep' " Use ag in ack.vim
-  set grepprg=ag\ --nogroup\ --nocolor
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -Q -l -w --nocolor --hidden -g "" %s'
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
+" ack.vim: Use ag instead of ack
+let g:ackprg = 'ag --vimgrep'
+
+" fzf.vim
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+nnoremap <C-p> :Files<cr>
+nnoremap <leader>c :Commits<cr>
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" Advanced customization using autoload functions
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
 " ale
 " https://github.com/w0rp/ale
@@ -235,9 +242,7 @@ let g:gitgutter_sign_modified_removed = '∙'
 autocmd BufNewFile,BufRead *.js set ft=javascript.jsx
 
 " Avoid escape
-:imap jj <Esc>
 :imap jk <Esc>
-:imap kk <Esc>
 
 " Spell check
 "
