@@ -252,7 +252,7 @@ set spellfile=$HOME/.vim-spell-en.utf-8.add
 set spell
 
 " deoplete
-call deoplete#enable()
+let g:deoplete#enable_at_startup = 1
 " Use <tab> to complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 

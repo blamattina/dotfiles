@@ -1,4 +1,4 @@
-call plug#begin('~/.vim/bundle')
+call plug#begin('~/.config/nvim/plugged')
 
 " visual
 Plug 'mhinz/vim-startify'
@@ -50,7 +50,6 @@ Plug 'tpope/vim-dispatch'
 " languages
 Plug 'digitaltoad/vim-jade'
 Plug 'sheerun/vim-polyglot'
-Plug 'ternjs/tern_for_vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-jdaddy'
 
