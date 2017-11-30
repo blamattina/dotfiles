@@ -36,6 +36,7 @@ function! SetupDeoplete(info)
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': function('SetupDeoplete')  }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'ternjs/tern_for_vim'
 
 " git
 Plug 'airblade/vim-gitgutter'
