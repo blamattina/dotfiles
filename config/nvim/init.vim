@@ -181,8 +181,11 @@ let g:startify_bookmarks = [
   \{'z': '~/.zshrc'}
   \]
 
-" ack.vim: Use ag instead of ack
+" ack.vim
+" Use ag instead of ack
 let g:ackprg = 'ag --vimgrep'
+" Highlight search terms
+let g:ackhighlight = 1
 
 " fzf.vim
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
