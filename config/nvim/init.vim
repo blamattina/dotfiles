@@ -286,34 +286,8 @@ let g:markdown_fenced_languages = ['html', 'coffee', 'json', 'javascript',
 " Align GitHub-flavored Markdown tables
 au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
-" Normalize white space
-function! NormalizeWhitespace()
-  " Save search and cursor position
-  let last_search = @/
-  let line = line(".")
-  let col = col(".")
-
-  " Remove trailing whitespace
-  " Source: http://vim.wikia.com/wiki/Remove_unwanted_spaces
-  %s#\\s\\+$##e"
-
-  " Remove extra blank lines
-  " Source: http://unix.stackexchange.com/questions/12812
-  %!cat -s
-
-  " Remove extra blank lines at end of file
-  " Source: http://stackoverflow.com/questions/7495932
-  %s#\($\n\s*\)\+\%$##e
-
-  " Restore search and cursor position
-  let @/ = last_search
-  call cursor(line, col)
-endfunction
-
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * :call NormalizeWhitespace()
-augroup END
+" Create directories if needed
+autocmd BufWritePre * :silent !mkdir -p %:p:h
 
 " Local config
 if filereadable($HOME . "/.config/nvim/init.local.vim")
