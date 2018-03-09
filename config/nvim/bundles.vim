@@ -57,8 +57,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-jdaddy'
 
-if filereadable(expand("~/.vimrc.bundles.local"))
-  source ~/.vimrc.bundles.local
+if filereadable($HOME . "/.config/nvim/bundles.local.vim")
+  source ~/.config/nvim/bundles.local.vim
 endif
 
 call plug#end()
