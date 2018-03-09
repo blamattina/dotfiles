@@ -22,6 +22,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-commentary'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'sirver/ultisnips'
 
 " autocomplete
 function! SetupDeoplete(info)
@@ -35,6 +36,8 @@ function! SetupDeoplete(info)
   endif
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': function('SetupDeoplete')  }
+Plug 'ervandew/supertab'
+Plug 'wellle/tmux-complete.vim'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'ternjs/tern_for_vim'
 

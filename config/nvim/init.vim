@@ -220,6 +220,7 @@ let g:ale_linters['javascript'] = ['eslint']
 let g:ale_linters['json'] = ['jsonlint']
 
 let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 0
 
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
@@ -250,7 +251,21 @@ set spell
 " deoplete
 let g:deoplete#enable_at_startup = 1
 " Use <tab> to complete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+" Fix deoplete + multiple cursors conflict
+" https://github.com/terryma/vim-multiple-cursors/issues/235
+func! Multiple_cursors_before()
+    call deoplete#init#_disable()
+endfunc
+
+func! Multiple_cursors_after()
+    call deoplete#init#_enable()
+endfunc
+
+" supertab
+" https://github.com/ervandew/supertab
+let g:SuperTabDefaultCompletionType = "<c-n>" " Cycle from top to bottom
 
 " deoplete-ternjs
 let g:tern#command = ["tern"]
