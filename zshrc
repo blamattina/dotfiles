@@ -109,6 +109,3 @@ fi
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Added by nex: https://git.hubteam.com/HubSpot/nex
-. ~/.hubspot/shellrc

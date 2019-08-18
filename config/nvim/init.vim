@@ -70,55 +70,6 @@ hi diffchange gui=none guifg=none guibg=#e5d5ac
 hi diffdelete gui=bold guifg=#ff8080 guibg=#ffb0b0
 hi difftext gui=none guifg=none guibg=#8cbee2
 
-" Lightline
-let g:lightline = {
-\ 'colorscheme': 'wombat',
-\ 'active': {
-\   'left': [['mode', 'paste'], ['filename', 'modified']],
-\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
-\ },
-\ 'component_expand': {
-\   'linter_warnings': 'LightlineLinterWarnings',
-\   'linter_errors': 'LightlineLinterErrors',
-\   'linter_ok': 'LightlineLinterOK'
-\ },
-\ 'component_type': {
-\   'readonly': 'error',
-\   'linter_warnings': 'warning',
-\   'linter_errors': 'error'
-\ },
-\ }
-
-function! LightlineLinterWarnings() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
-endfunction
-
-function! LightlineLinterErrors() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
-endfunction
-
-function! LightlineLinterOK() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '✓ ' : ''
-endfunction
-
-autocmd User ALELint call s:MaybeUpdateLightline()
-
-" Update and show lightline but only if it's visible (e.g., not in Goyo)
-function! s:MaybeUpdateLightline()
-  if exists('#lightline')
-    call lightline#update()
-  end
-endfunction
-
 " Soft tabs, 2 spaces
 set tabstop=2
 set shiftwidth=2
@@ -186,6 +137,7 @@ let g:startify_bookmarks = [
 let g:ackprg = 'ag --vimgrep'
 " Highlight search terms
 let g:ackhighlight = 1
+let g:ack_use_dispatch = 0
 
 " fzf.vim
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
@@ -201,32 +153,6 @@ let g:fzf_action = {
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
-
-" Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-
-" Advanced customization using autoload functions
-inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
-
-" ale
-" https://github.com/w0rp/ale
-
-let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['prettier']
-let g:ale_fixers['json'] = ['prettier']
-let g:ale_javascript_prettier_use_local_config = 1
-let g:ale_linters = {}
-let g:ale_linters['javascript'] = ['eslint']
-let g:ale_linters['json'] = ['jsonlint']
-
-let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 0
-
-highlight link ALEWarningSign String
-highlight link ALEErrorSign Title
 
 " Enable jsdoc syntax highlighting
 let g:javascript_plugin_jsdoc = 1
@@ -251,35 +177,6 @@ autocmd BufNewFile,BufRead *.js set ft=javascript.jsx
 set spellfile=$HOME/.vim-spell-en.utf-8.add
 set spell
 
-" deoplete
-let g:deoplete#enable_at_startup = 1
-" Use <tab> to complete
-inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-" Fix deoplete + multiple cursors conflict
-" https://github.com/terryma/vim-multiple-cursors/issues/235
-func! Multiple_cursors_before()
-    call deoplete#init#_disable()
-endfunc
-
-func! Multiple_cursors_after()
-    call deoplete#init#_enable()
-endfunc
-
-" supertab
-" https://github.com/ervandew/supertab
-let g:SuperTabDefaultCompletionType = "<c-n>" " Cycle from top to bottom
-
-" deoplete-ternjs
-let g:tern#command = ["tern"]
-let g:tern#filetypes = ['jsx', 'javascript.jsx']
-
-" Whether to include documentation strings (if found) in the result data.
-let g:deoplete#sources#ternjs#docs = 1
-
-" Whether to include the types of the completions in the result data. Default: 0
-let g:deoplete#sources#ternjs#types = 1
-
 " Markdown
 let g:markdown_fenced_languages = ['html', 'coffee', 'json', 'javascript',
   \'js=javascript', 'python', 'bash=sh']
@@ -288,6 +185,16 @@ au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
 " Create directories if needed
 autocmd BufWritePre * :silent !mkdir -p %:p:h
+
+" Configure linting
+if filereadable($HOME . "/.config/nvim/linting.vim")
+  source ~/.config/nvim/linting.vim
+endif
+
+" Configure autocomplete
+if filereadable($HOME . "/.config/nvim/autocomplete.vim")
+  source ~/.config/nvim/autocomplete.vim
+endif
 
 " Local config
 if filereadable($HOME . "/.config/nvim/init.local.vim")
