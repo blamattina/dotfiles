@@ -77,8 +77,13 @@ else
   export TMUXIFIER_HORIZONTAL_SPLIT=18
 fi
 
-# Set editor to vim
+# Set editor to neovim
 export EDITOR=nvim
+
+if (( $+commands[tag] )); then
+  tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
+  alias ag=tag
+fi
 
 # Load plug
 if [ ! -e "$HOME"/.config/nvim/autoload/plug.vim ]; then
@@ -103,9 +108,7 @@ fi
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
-if (( $+commands[tag] )); then
-  tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
-  alias ag=tag
-fi
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Added by nex: https://git.hubteam.com/HubSpot/nex
+. ~/.hubspot/shellrc
