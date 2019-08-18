@@ -31,6 +31,8 @@ alias gc='git commit -v'
 alias gco='git checkout'
 alias gfa='git fetch --all'
 alias gpr='git pull --rebase'
+alias gmom='git merge origin/master'
+alias gp='git push'
 
 # git log: short
 alias gl='git log --pretty=colored'
