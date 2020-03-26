@@ -42,15 +42,9 @@ cask 'dropbox'
 cask 'flux'
 cask 'google-chrome'
 cask 'iterm2'
-cask 'mailplane'
 cask 'marked'
-cask 'rescuetime'
-cask 'scansnap-manager-ix500'
-cask 'sketch'
 cask 'spectacle'
-cask 'zeplin'
 
 # Mac App Store
 mas 'Bear', id: 1091189122
-mas 'Fantastical 2', id: 975937182
 mas 'Things 3', id: 904280696
