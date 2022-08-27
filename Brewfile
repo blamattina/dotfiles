@@ -30,21 +30,13 @@ tap 'aykamko/tag-ag'
 brew 'tag-ag'
 
 # Casks
-tap 'caskroom/cask'
+tap 'homebrew/cask'
 cask '1password'
 cask 'aerial'
-cask 'alfred'
 cask 'bartender'
-cask 'caffeine'
-cask 'charles'
-cask 'cloudapp'
-cask 'dropbox'
-cask 'flux'
-cask 'google-chrome'
+cask 'brave-browser'
+cask 'discord'
 cask 'iterm2'
-cask 'marked'
-cask 'spectacle'
-
-# Mac App Store
-mas 'Bear', id: 1091189122
-mas 'Things 3', id: 904280696
+cask 'raycast'
+cask 'rectangle'
+cask 'slack'
