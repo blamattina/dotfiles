@@ -25,8 +25,10 @@ brew 'neovim'
 
 # Casks
 cask '1password'
+cask 'chatgpt'
 cask 'discord'
 cask 'iterm2'
 cask 'raycast'
 cask 'rectangle'
 cask 'slack'
+
