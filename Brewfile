@@ -23,12 +23,18 @@ brew 'zsh'
 tap 'neovim/neovim'
 brew 'neovim'
 
+# Formatting
+brew 'prettierd'
+brew 'stylua'
+
 # Casks
 cask '1password'
+cask 'adobe-creative-cloud'
 cask 'chatgpt'
 cask 'discord'
 cask 'iterm2'
 cask 'raycast'
 cask 'rectangle'
 cask 'slack'
-
+cask 'steam'
+cask 'font-sauce-code-pro-nerd-font'
