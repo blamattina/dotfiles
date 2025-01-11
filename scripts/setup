@@ -1,7 +1,7 @@
 # vi: ft=sh
 
 print_message() {
- echo "\n🤘 $@"
+ echo "🤘 $@"
 }
 
 print_message "Installing rcm..."

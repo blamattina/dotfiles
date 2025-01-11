@@ -62,20 +62,8 @@ plugins=(git)
 # Load oh-my-zsh
 [[ -f $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh
 
-# Load tmuxifier: https://github.com/jimeh/tmuxifier
-export PATH="$HOME/.tmuxifier/bin:$PATH"
-export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
-eval "$(tmuxifier init -)"
-
 # Set empty terminal title for tmux
 printf '\033]2;\033\\'
-
-# Set horizontal split for tmuxifier windows
-if [ $COLUMNS -gt 200 ]; then
-  export TMUXIFIER_HORIZONTAL_SPLIT=9
-else
-  export TMUXIFIER_HORIZONTAL_SPLIT=18
-fi
 
 # Set editor to neovim
 export EDITOR=nvim
@@ -83,14 +71,6 @@ export EDITOR=nvim
 if (( $+commands[tag] )); then
   tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
   alias ag=tag
-fi
-
-# Load plug
-if [ ! -e "$HOME"/.config/nvim/autoload/plug.vim ]; then
-  curl -fLo "$HOME"/.config/nvim/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-  vim -u "$HOME"/.config/nvim/bundles.vim +PlugInstall +PlugClean! +qa
 fi
 
 # Load z
@@ -107,5 +87,8 @@ fi
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# Load private
+[[ -f ~/.zshrc.private ]] && source ~/.zshrc.private
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
