@@ -14,6 +14,7 @@ keymap.set("t", "<C-l>", "<C-\\><C-n><Cmd>wincmd l<CR>", { silent = true, desc =
 
 -- Easy escape from terminal mode to normal mode
 keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { silent = true, desc = "Exit terminal mode" })
+keymap.set("t", "<C-Esc>", "<C-\\><C-n>", { silent = true, desc = "Exit terminal mode with Ctrl-Esc" })
 
 -- Search on highlighted text in visual mode with "//"
 keymap.set("v", "//", 'y/<C-R>"<CR>', { noremap = true, silent = true, desc = "Search highlighted text" })
