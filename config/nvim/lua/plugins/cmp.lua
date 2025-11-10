@@ -8,8 +8,6 @@ return {
       "rafamadriz/friendly-snippets", -- Pre-built snippets
     },
     config = function()
-      local luasnip = require("luasnip")
-
       -- Load snippets from friendly-snippets
       require("luasnip.loaders.from_vscode").lazy_load()
 

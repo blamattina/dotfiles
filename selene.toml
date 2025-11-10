@@ -1,0 +1,20 @@
+# Selene configuration for Neovim Lua development
+# See: https://kampfkarren.github.io/selene/
+
+# Use Lua 5.1 standard (LuaJIT compatible)
+std = "lua51"
+
+# Exclude common directories
+exclude = [
+  "*.git/*",
+]
+
+# Configure linting rules
+[rules]
+global_usage = "allow"  # Allow globals for vim, require, etc.
+deprecated = "warn"
+multiple_statements = "warn"
+mixed_table = "allow"  # Common in Neovim plugin configs
+unused_variable = "warn"
+undefined_variable = "allow"  # vim global is expected in Neovim
+unscoped_variables = "allow"  # vim is intentionally a global in Neovim
