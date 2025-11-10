@@ -29,6 +29,12 @@ brew 'neovim'
 brew 'prettierd'
 brew 'stylua'
 
+# Linting
+brew 'eslint_d'
+brew 'ruff'
+brew 'shellcheck'
+brew 'selene'
+
 # Casks
 cask '1password'
 cask 'adobe-creative-cloud'
