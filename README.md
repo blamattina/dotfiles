@@ -1,37 +1,26 @@
 # dotfiles
-> Configuration files for `zsh`, `vim`, and `tmux` heavily inspired by https://github.com/thoughtbot/dotfiles.
+> Configuration files for `fish`, `neovim`, and `tmux`.
 
 ## Installation
 ```sh
-# Install configuration management tools
-brew tap thoughtbot/formulae
-brew install rcm
-
-# Clone oh-my-zsh
-git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-
 # Clone dotfiles
-git clone https://github.com/blamattina/dotfiles.git
+git clone https://github.com/blamattina/dotfiles.git ~/src/dotfiles
+cd ~/src/dotfiles
 
-# Link files
-rcup -d .
+# Install packages
+brew bundle
+
+# Link files and install fish plugins
+./scripts/setup
+
+# Set fish as default shell
+echo $(which fish) | sudo tee -a /etc/shells && chsh -s $(which fish)
 ```
 
-Note: This expects `~/.gitconfig` to be controlled by [boxen][boxen] and for
-boxen include `~/.gitconfig.dotfiles` as an additional configuration file.
-([boxen configuration example][boxen-git-example])
-
-[boxen]: https://github.com/boxen/our-boxen/
-[boxen-git-example]: https://github.com/blamattina/my-boxen/commit/0cbfab174a1d33d19d5f4f207d4b503805dbf480?diff=unified
-
 ## Customizations
-Place configuration for a specific computer or environment in files with the
-`.local` extension.
+Place configuration for a specific computer or environment in local files (not version controlled):
 
-Supported Local Files:
-- `~/.aliases.local`
+- `~/.config/fish/config.local.fish`
+- `~/.config/fish/config.private.fish`
 - `~/.gitconfig.local`
 - `~/.tmux.conf.local`
-- `~/.vimrc.local`
-- `~/.vimrc.bundles.local`
-- `~/.zshrc.local`

@@ -11,6 +11,7 @@
   ui = auto
 [commit]
   template = ~/.gitmessage
+	gpgsign = true
 [core]
   excludesfile = ~/.gitignore
   preloadindex = true
@@ -26,3 +27,7 @@
   default = current
 [rebase]
   autosquash = true
+[gpg]
+	format = ssh
+[user]
+	signingkey = /Users/blamattina/.ssh/id_rsa.pub

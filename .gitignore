@@ -1,2 +1,16 @@
 Brewfile.lock.json
 .DS_Store
+
+# Fisher-installed plugin files — managed via fish_plugins, not committed
+dot-config/fish/functions/*
+dot-config/fish/conf.d/*
+dot-config/fish/completions/
+
+# Keep our own fish files
+!dot-config/fish/functions/g.fish
+!dot-config/fish/functions/git-safety-dance.fish
+!dot-config/fish/functions/git-list-merged-branches.fish
+!dot-config/fish/functions/git-delete-merged-branches.fish
+!dot-config/fish/functions/fzf-checkout.fish
+!dot-config/fish/functions/pipe-git-command-to-diff-so-fancy.fish
+!dot-config/fish/conf.d/aliases.fish

@@ -4,26 +4,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a personal dotfiles repository managed with RCM (thoughtbot's RC file management tool). Files are symlinked from this repository to the home directory, with the `config/` directory mapping to `~/.config/`.
+This is a personal dotfiles repository managed with GNU Stow. Files are symlinked from this repository to the home directory using the `--dotfiles` flag, which maps `dot-NAME` files/dirs to `~/.NAME`.
+
+Primary shell is **fish**, configured in `dot-config/fish/`. Zsh config (`dot-zshrc`) is retained for compatibility.
 
 ## Setup Commands
 
 ### Initial Installation
 ```bash
-# Automated setup (installs rcm, creates symlinks, clones oh-my-zsh)
+# Automated setup (installs stow, creates symlinks)
 ./scripts/setup
 
 # Manual installation
-brew install rcm
-git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-rcup -d ~/src/dotfiles
+brew install stow
+stow --dotfiles --target="$HOME" --dir=~/src/dotfiles .
 ```
 
 ### Update Dotfiles
 ```bash
 cd ~/src/dotfiles
 git pull
-rcup  # Re-create symlinks if needed
+stow --dotfiles --target="$HOME" --dir=. .  # Re-create symlinks if needed
 ```
 
 ### Package Management
@@ -46,20 +47,24 @@ nvim           # Auto-bootstraps lazy.nvim and installs plugins
 
 ## Architecture
 
-### RCM Symlink System
-- RCM creates symlinks: repository files → home directory
-- Files without `.` prefix get symlinked as dotfiles (e.g., `zshrc` → `~/.zshrc`)
-- `config/` directory contents → `~/.config/` (XDG Base Directory)
-- Exclusions defined in `rcrc`: README, LICENSE, scripts, examples
-- Command: `rcup` creates symlinks, `rcdn` removes them
+### GNU Stow Symlink System
+- Stow creates symlinks: repository files → home directory
+- Files prefixed with `dot-` are symlinked as dotfiles (e.g., `dot-zshrc` → `~/.zshrc`)
+- `dot-config/` directory contents → `~/.config/` (XDG Base Directory)
+- Exclusions defined in `.stow-local-ignore`: README, LICENSE, Brewfile, scripts, etc.
+- Command: `stow --dotfiles --target="$HOME" .` creates symlinks
+- To remove symlinks: `stow --dotfiles --target="$HOME" --delete .`
 
-### Shell Configuration Loading Order
-The `zshrc` sources configurations in this specific order:
-1. oh-my-zsh framework
-2. `~/.aliases` (git functions, tmux shortcuts, search tools)
-3. `~/.zshrc.local` (machine-specific, not version controlled)
-4. `~/.zshrc.private` (sensitive data, not version controlled)
-5. `~/.fzf.zsh` (fuzzy finder integration)
+### Fish Shell Configuration
+Fish config lives in `dot-config/fish/`:
+- `config.fish` — main config: editor, nodenv, fzf, starship, atuin, direnv, vim keybindings
+- `conf.d/aliases.fish` — shell aliases
+- `functions/` — autoloaded functions (g, git-safety-dance, fzf-checkout, etc.)
+- `fish_plugins` — Fisher plugin list (install with `fisher update`)
+
+**Plugins (via Fisher):** `oh-my-fish/plugin-osx`, `oh-my-fish/plugin-brew`, `oh-my-fish/plugin-extract`, `jethrokuan/z`
+
+**Local/private overrides:** `~/.config/fish/config.local.fish`, `~/.config/fish/config.private.fish`
 
 ### Machine-Specific Customization Pattern
 Use `.local` files for machine-specific overrides (not version controlled):
@@ -73,7 +78,7 @@ Use `~/.zshrc.private` for sensitive environment variables or credentials.
 ### Neovim Lua Configuration Structure
 Modern Lua-based setup with lazy.nvim:
 ```
-config/nvim/
+dot-config/nvim/
 ├── init.lua                    # Entry point
 ├── lua/
 │   ├── config/
@@ -134,22 +139,22 @@ Avante.nvim is configured with OpenAI o1-preview model:
 ### Search Tools
 Multiple search utilities configured:
 - **fzf**: Fuzzy finder (Ctrl-R for history, Ctrl-T for files)
-- **ag**: Silver Searcher (`agignore` excludes common dirs)
+- **ag**: Silver Searcher (`dot-agignore` excludes common dirs)
 - **ripgrep**: Fast grep alternative
 - **Telescope**: Neovim fuzzy finder (Ctrl-p for files, Space+s+g for grep)
 
 ## Adding New Dotfiles
 
-1. Add file to repository (with or without `.` prefix)
-2. If it should NOT be symlinked, add to EXCLUDES in `rcrc`
-3. Run `rcup` to create symlink
-4. For config files in XDG directories, use `config/` subdirectory
+1. Add file to repository with `dot-` prefix (e.g., `dot-myconfig`)
+2. For XDG config files, add under `dot-config/` (e.g., `dot-config/myapp/config`)
+3. If it should NOT be symlinked, add a pattern to `.stow-local-ignore`
+4. Run `stow --dotfiles --target="$HOME" .` to create the symlink
 
 Example:
 ```bash
 # Add new zsh function file
-echo 'my_function() { ... }' > ~/src/dotfiles/functions
-rcup -d ~/src/dotfiles
+echo 'my_function() { ... }' > ~/src/dotfiles/dot-functions
+stow --dotfiles --target="$HOME" --dir=~/src/dotfiles .
 # Now ~/.functions exists and is sourced
 ```
 
@@ -181,8 +186,7 @@ tmux source-file ~/.tmux.conf
 
 Core tools required (most in Brewfile):
 - **Homebrew**: Package manager for macOS
-- **rcm**: Dotfile symlink manager
-- **oh-my-zsh**: Zsh framework (cloned by setup script)
+- **stow**: Dotfile symlink manager
 - **neovim**: Modern Vim fork
 - **tmux**: Terminal multiplexer
 - **fzf**: Fuzzy finder
@@ -194,9 +198,8 @@ Core tools required (most in Brewfile):
 ## Important Notes
 
 - Editor: Neovim is aliased as `vim` in aliases file
-- Git config: `gitconfig.dotfiles` is symlinked to `~/.gitconfig` (RCM behavior)
+- Git config: `dot-gitconfig` is symlinked to `~/.gitconfig`
 - Git ignore: Global excludesfile at `~/.gitignore`
 - Git commit template: `~/.gitmessage` provides 7 rules of good commits
 - oh-my-zsh: Currently using minimal config (just git plugin, robbyrussell theme)
 - Colors: Tmux and Neovim configured for 256-color terminals
-- rcup -vd . from the repo root will link new files

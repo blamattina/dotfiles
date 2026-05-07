@@ -1,0 +1,36 @@
+# Load boxen environment
+[[ -f /opt/boxen/env.sh ]] && source /opt/boxen/env.sh
+
+# Load local environment
+[[ -f ~/.env ]] && export $(cat ~/.env)
+
+# Set empty terminal title for tmux
+printf '\033]2;\033\\'
+
+# Set editor to neovim
+export EDITOR=nvim
+
+if (( $+commands[tag] )); then
+  tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
+  alias ag=tag
+fi
+
+# Load z
+if [[ -f `brew --prefix`/etc/profile.d/z.sh ]]; then
+  . `brew --prefix`/etc/profile.d/z.sh
+fi
+
+if [[ -f `brew --prefix`/bin/nodenv ]]; then
+  eval "$(`brew --prefix`/bin/nodenv init -)"
+fi
+
+# Load aliases
+[[ -f ~/.aliases ]] && source ~/.aliases
+
+# Local config
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# Load private
+[[ -f ~/.zshrc.private ]] && source ~/.zshrc.private
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

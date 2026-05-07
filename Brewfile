@@ -1,12 +1,12 @@
 # vi: ft=ruby
 # Configuration Management
-tap 'thoughtbot/formulae'
-brew 'rcm'
+brew 'stow'
 
-# Programing languages
-brew 'node'
-brew 'nodenv'
-brew 'python3'
+# Shell
+brew 'fish'
+brew 'starship'
+brew 'atuin'
+brew 'direnv'
 
 # Shell Utilities
 brew 'ag'
@@ -37,19 +37,15 @@ brew 'selene'
 
 # Casks
 cask '1password'
-cask 'adobe-creative-cloud'
-cask 'balenaetcher'
 cask 'bartender'
-cask 'bazecor'
-cask 'chatgpt'
-cask 'discord'
 cask 'ghostty'
 cask 'font-sauce-code-pro-nerd-font'
+cask 'granola'
 cask 'iterm2'
 cask 'lunar'
+cask 'macwhisper'
+cask 'obsidian'
 cask 'raycast'
 cask 'rectangle'
-cask 'reflect'
 cask 'slack'
-cask 'steam'
 cask 'steermouse'
