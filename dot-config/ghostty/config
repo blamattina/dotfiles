@@ -2,3 +2,5 @@ font-family = SauceCodePro NFM SemiBold
 font-size = 16
 
 theme = tokyonight
+
+command = /opt/homebrew/bin/fish

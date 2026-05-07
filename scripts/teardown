@@ -1,26 +1,11 @@
-# vi: ft=sh
+#!/bin/bash
 
 print_message() {
- echo "🤘 $@"
+  echo "🤘 $@"
 }
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOTFILES_DIR=${DIR/\/scripts/}
 
-print_message "Unlinking config files in ${DOTFILES_DIR}"
-
-rcdn -d ${DOTFILES_DIR}
-
-if [ -d "$HOME/.oh-my-zsh" ]; then
-  print_message "Removing oh-my-zsh"
-  rm -rf "$HOME/.oh-my-zsh"
-
-fi
-
-if  [ -d "$HOME/.tmuxifier" ]; then
-  print_message "Removing tmuxifier"
-  rm -rf "$HOME/.tmuxifier"
-fi
-
-print_message "Removing rcm"
-brew uninstall rcm
+print_message "Unlinking dotfiles..."
+stow --dotfiles --target="$HOME" --dir="$DOTFILES_DIR" --delete .

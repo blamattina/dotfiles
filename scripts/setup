@@ -1,24 +1,29 @@
-# vi: ft=sh
+#!/bin/bash
 
 print_message() {
- echo "🤘 $@"
+  echo "🤘 $@"
 }
-
-print_message "Installing rcm..."
-
-brew tap thoughtbot/formulae
-brew install rcm
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOTFILES_DIR=${DIR/\/scripts/}
 
-print_message "Linking config files in ${DOTFILES_DIR}"
+print_message "Installing packages from Brewfile..."
+brew bundle --file="$DOTFILES_DIR/Brewfile"
 
-rcup -d ${DOTFILES_DIR} rcrc
-rcup -d ${DOTFILES_DIR}
+print_message "Backing up any conflicting files..."
+for conflict in $(stow --dotfiles --target="$HOME" --dir="$DOTFILES_DIR" --simulate . 2>&1 | grep "cannot stow" | sed "s/.*target //;s/ since.*//"); do
+  target="$HOME/$conflict"
+  if [ -f "$target" ] && [ ! -L "$target" ]; then
+    mv "$target" "$target.bak"
+    echo "  Backed up $target"
+  fi
+done
 
-if ! [ -d "$HOME/.oh-my-zsh" ]; then
-  print_message "Setting up oh-my-zsh"
-  git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh --quiet
+print_message "Linking dotfiles..."
+stow --dotfiles --target="$HOME" --dir="$DOTFILES_DIR" .
 
-fi
+print_message "Installing Fisher plugins..."
+fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update"
+
+print_message "Done! To set fish as your default shell:"
+echo "  echo \$(which fish) | sudo tee -a /etc/shells && chsh -s \$(which fish)"
