@@ -25,6 +25,9 @@ brew 'zsh'
 tap 'neovim/neovim'
 brew 'neovim'
 
+# Personal Taps
+tap 'blamattina/formulae'
+
 # Formatting
 brew 'prettierd'
 brew 'stylua'
@@ -43,6 +46,7 @@ cask 'font-sauce-code-pro-nerd-font'
 cask 'iterm2'
 cask 'lunar'
 cask 'macwhisper'
+cask 'mouser'
 cask 'obsidian'
 cask 'raycast'
 cask 'rectangle'
