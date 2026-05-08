@@ -33,7 +33,3 @@ printf '\033]2;\033\\'
 if test -f ~/.config/fish/config.local.fish
     source ~/.config/fish/config.local.fish
 end
-
-if test -f ~/.config/fish/config.private.fish
-    source ~/.config/fish/config.private.fish
-end
