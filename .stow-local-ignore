@@ -1,9 +1,0 @@
-# Files in this repo that should not be symlinked to ~
-README.md
-Brewfile
-CLAUDE.md
-LICENSE
-scripts
-\.gitignore
-\.claude
-\.stow-local-ignore

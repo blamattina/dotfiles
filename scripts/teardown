@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 print_message() {
   echo "🤘 $@"
@@ -7,5 +8,18 @@ print_message() {
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOTFILES_DIR=${DIR/\/scripts/}
 
-print_message "Unlinking dotfiles..."
-stow --dotfiles --target="$HOME" --dir="$DOTFILES_DIR" --delete .
+PACKAGES=("common")
+if [ -n "$1" ]; then
+  if [ ! -d "$DOTFILES_DIR/$1" ]; then
+    echo "Error: package '$1' not found in $DOTFILES_DIR"
+    exit 1
+  fi
+  PACKAGES+=("$1")
+fi
+
+if [ -d "$DOTFILES_DIR/local" ]; then
+  PACKAGES+=("local")
+fi
+
+print_message "Unlinking packages: ${PACKAGES[*]}"
+stow --dotfiles --target="$HOME" --dir="$DOTFILES_DIR" --delete "${PACKAGES[@]}"

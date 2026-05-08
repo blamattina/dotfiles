@@ -4,37 +4,52 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a personal dotfiles repository managed with GNU Stow. Files are symlinked from this repository to the home directory using the `--dotfiles` flag, which maps `dot-NAME` files/dirs to `~/.NAME`.
+This is a personal dotfiles repository managed with GNU Stow. Top-level subdirectories are stow **packages**; per machine you stow `common` plus exactly one machine-specific package (`work` or `personal`). Stow uses `--dotfiles` mode, mapping `dot-NAME` files/dirs to `~/.NAME`.
 
-Primary shell is **fish**, configured in `dot-config/fish/`. Zsh config (`dot-zshrc`) is retained for compatibility.
+Primary shell is **fish**, configured in `common/dot-config/fish/`. Zsh config (`common/dot-zshrc`) is retained for compatibility.
+
+### Package layout
+- `common/` — shared across all machines (shell, editor, git, terminal configs, plus `Brewfile` of shared CLI tools and casks).
+- `work/` — work-laptop-only (e.g. Slack, Granola).
+- `personal/` — personal-laptop-only.
+- `local/` — **optional** overlay sourced from a separate repo (e.g. a private `dotfiles-local` on GitHub Enterprise for work-confidential config). Conventionally a symlink at the repo root pointing at an external clone. Auto-stowed by `scripts/setup` / `scripts/teardown` when the path exists. Listed in `.gitignore` so the symlink isn't committed.
+
+Each package has its own `Brewfile` and `.stow-local-ignore`. Brewfiles live inside packages and are excluded from stow via `.stow-local-ignore`. The external `local/` repo should follow the same conventions (`dot-`-prefixed files, optional `Brewfile`, optional `.stow-local-ignore`).
 
 ## Setup Commands
 
 ### Initial Installation
 ```bash
-# Automated setup (installs stow, creates symlinks)
-./scripts/setup
+# Automated setup — picks the machine package (work or personal)
+./scripts/setup work       # work laptop
+./scripts/setup personal   # personal laptop
+./scripts/setup            # common only
+
+# Optional: link an external "local" overlay repo (e.g. work-confidential config on GH Enterprise)
+git clone <internal-host>:me/dotfiles-local.git ~/src/dotfiles-local
+ln -s ~/src/dotfiles-local ~/src/dotfiles/local
+./scripts/setup work       # auto-detects ./local and stows it
 
 # Manual installation
 brew install stow
-stow --dotfiles --target="$HOME" --dir=~/src/dotfiles .
+stow --dotfiles --target="$HOME" --dir=~/src/dotfiles common work
 ```
 
 ### Update Dotfiles
 ```bash
 cd ~/src/dotfiles
 git pull
-stow --dotfiles --target="$HOME" --dir=. .  # Re-create symlinks if needed
+stow --dotfiles --target="$HOME" --dir=. common work  # or 'common personal'
 ```
 
 ### Package Management
 ```bash
-# Install all Homebrew packages from Brewfile
-brew bundle --file=~/src/dotfiles/Brewfile
+# Install Homebrew packages for this machine
+brew bundle --file=~/src/dotfiles/common/Brewfile
+brew bundle --file=~/src/dotfiles/work/Brewfile
 
-# Update Brewfile to match currently installed packages
-cd ~/src/dotfiles
-brew bundle dump --force
+# Update a Brewfile to match currently installed packages (be careful — dumps EVERYTHING installed)
+brew bundle dump --force --file=~/src/dotfiles/common/Brewfile
 ```
 
 ### Neovim Plugin Management
@@ -51,12 +66,12 @@ nvim           # Auto-bootstraps lazy.nvim and installs plugins
 - Stow creates symlinks: repository files → home directory
 - Files prefixed with `dot-` are symlinked as dotfiles (e.g., `dot-zshrc` → `~/.zshrc`)
 - `dot-config/` directory contents → `~/.config/` (XDG Base Directory)
-- Exclusions defined in `.stow-local-ignore`: README, LICENSE, Brewfile, scripts, etc.
-- Command: `stow --dotfiles --target="$HOME" .` creates symlinks
-- To remove symlinks: `stow --dotfiles --target="$HOME" --delete .`
+- Per-package exclusions in `<package>/.stow-local-ignore` (e.g. `Brewfile`, `.DS_Store`)
+- Command: `stow --dotfiles --target="$HOME" common work` (or `common personal`)
+- To remove symlinks: `stow --dotfiles --target="$HOME" --delete common work`
 
 ### Fish Shell Configuration
-Fish config lives in `dot-config/fish/`:
+Fish config lives in `common/dot-config/fish/`:
 - `config.fish` — main config: editor, nodenv, fzf, starship, atuin, direnv, vim keybindings
 - `conf.d/aliases.fish` — shell aliases
 - `functions/` — autoloaded functions (g, git-safety-dance, fzf-checkout, etc.)
@@ -78,7 +93,7 @@ Use `~/.zshrc.private` for sensitive environment variables or credentials.
 ### Neovim Lua Configuration Structure
 Modern Lua-based setup with lazy.nvim:
 ```
-dot-config/nvim/
+common/dot-config/nvim/
 ├── init.lua                    # Entry point
 ├── lua/
 │   ├── config/
@@ -145,18 +160,11 @@ Multiple search utilities configured:
 
 ## Adding New Dotfiles
 
-1. Add file to repository with `dot-` prefix (e.g., `dot-myconfig`)
-2. For XDG config files, add under `dot-config/` (e.g., `dot-config/myapp/config`)
-3. If it should NOT be symlinked, add a pattern to `.stow-local-ignore`
-4. Run `stow --dotfiles --target="$HOME" .` to create the symlink
-
-Example:
-```bash
-# Add new zsh function file
-echo 'my_function() { ... }' > ~/src/dotfiles/dot-functions
-stow --dotfiles --target="$HOME" --dir=~/src/dotfiles .
-# Now ~/.functions exists and is sourced
-```
+1. Decide which package: `common/` (shared) or `work/` / `personal/` (machine-specific).
+2. Add file with `dot-` prefix (e.g., `common/dot-myconfig`).
+3. For XDG config files, add under `<package>/dot-config/` (e.g., `common/dot-config/myapp/config`).
+4. If it should NOT be symlinked, add a pattern to `<package>/.stow-local-ignore`.
+5. Re-stow: `stow --dotfiles --target="$HOME" --dir=~/src/dotfiles common work` (or whichever packages apply).
 
 ## Testing Configuration Changes
 

@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(git *)",
-      "mcp__claude_ai_Slack__slack_read_thread"
+      "mcp__claude_ai_Slack__slack_read_thread",
+      "Bash(stow --version)",
+      "Bash([ -L \"$HOME/.config/$d\" ])",
+      "Bash([ -d \"$HOME/.config/$d\" ])",
+      "Bash(brew install *)"
     ]
   }
 }

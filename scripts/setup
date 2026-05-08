@@ -1,17 +1,46 @@
 #!/bin/bash
+set -e
 
 print_message() {
   echo "🤘 $@"
 }
 
+usage() {
+  echo "Usage: $0 [machine-package]"
+  echo "  machine-package: optional package to stow alongside 'common' (e.g. 'work', 'personal')"
+  echo "  Example: $0 work"
+}
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOTFILES_DIR=${DIR/\/scripts/}
 
-print_message "Installing packages from Brewfile..."
-brew bundle --file="$DOTFILES_DIR/Brewfile"
+PACKAGES=("common")
+if [ -n "$1" ]; then
+  if [ ! -d "$DOTFILES_DIR/$1" ]; then
+    echo "Error: package '$1' not found in $DOTFILES_DIR"
+    usage
+    exit 1
+  fi
+  PACKAGES+=("$1")
+fi
+
+# Auto-include `local` overlay if it exists (typically a symlink to an external repo
+# like dotfiles-local on GH Enterprise — see README).
+if [ -d "$DOTFILES_DIR/local" ]; then
+  PACKAGES+=("local")
+fi
+
+print_message "Stowing packages: ${PACKAGES[*]}"
+
+for pkg in "${PACKAGES[@]}"; do
+  if [ -f "$DOTFILES_DIR/$pkg/Brewfile" ]; then
+    print_message "Installing packages from $pkg/Brewfile..."
+    brew bundle --file="$DOTFILES_DIR/$pkg/Brewfile"
+  fi
+done
 
 print_message "Backing up any conflicting files..."
-for conflict in $(stow --dotfiles --target="$HOME" --dir="$DOTFILES_DIR" --simulate . 2>&1 | grep "cannot stow" | sed "s/.*target //;s/ since.*//"); do
+for conflict in $(stow --dotfiles --target="$HOME" --dir="$DOTFILES_DIR" --simulate "${PACKAGES[@]}" 2>&1 | grep "cannot stow" | sed "s/.*target //;s/ since.*//"); do
   target="$HOME/$conflict"
   if [ -f "$target" ] && [ ! -L "$target" ]; then
     mv "$target" "$target.bak"
@@ -20,7 +49,7 @@ for conflict in $(stow --dotfiles --target="$HOME" --dir="$DOTFILES_DIR" --simul
 done
 
 print_message "Linking dotfiles..."
-stow --dotfiles --target="$HOME" --dir="$DOTFILES_DIR" .
+stow --dotfiles --target="$HOME" --dir="$DOTFILES_DIR" "${PACKAGES[@]}"
 
 print_message "Installing Fisher plugins..."
 fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update"

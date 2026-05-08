@@ -1,0 +1,5 @@
+# vi: ft=ruby
+# Personal-machine-only apps
+
+cask 'discord'
+cask 'steam'
