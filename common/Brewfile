@@ -19,7 +19,6 @@ brew 'tmux'
 brew 'tree'
 brew 'wget'
 brew 'z'
-brew 'zsh'
 
 # Editors
 tap 'neovim/neovim'

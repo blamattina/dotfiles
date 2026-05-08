@@ -32,10 +32,12 @@ The external repo follows the same conventions as the in-tree packages:
 `dot-`-prefixed files, optional `Brewfile`, optional `.stow-local-ignore`. The
 `private` symlink is gitignored so it never gets committed back to the public repo.
 
-## Customizations
-Place configuration for a specific computer or environment in local files (not version controlled):
+## Extending
+Configuration for a specific computer or environment goes in `.local` files.
+Each is sourced if present; you can keep them out of version control entirely,
+or commit them to your private overlay (see above) for machine-specific config
+that should still be versioned somewhere private.
 
 - `~/.config/fish/config.local.fish`
-- `~/.config/fish/config.private.fish`
 - `~/.gitconfig.local`
 - `~/.tmux.conf.local`

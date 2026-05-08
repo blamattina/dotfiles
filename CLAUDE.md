@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a personal dotfiles repository managed with GNU Stow. Top-level subdirectories are stow **packages**; per machine you stow `common` plus exactly one machine-specific package (`work` or `personal`). Stow uses `--dotfiles` mode, mapping `dot-NAME` files/dirs to `~/.NAME`.
 
-Primary shell is **fish**, configured in `common/dot-config/fish/`. Zsh config (`common/dot-zshrc`) is retained for compatibility.
+Primary shell is **fish**, configured in `common/dot-config/fish/`.
 
 ### Package layout
 - `common/` — shared across all machines (shell, editor, git, terminal configs, plus `Brewfile` of shared CLI tools and casks).
@@ -64,7 +64,7 @@ nvim           # Auto-bootstraps lazy.nvim and installs plugins
 
 ### GNU Stow Symlink System
 - Stow creates symlinks: repository files → home directory
-- Files prefixed with `dot-` are symlinked as dotfiles (e.g., `dot-zshrc` → `~/.zshrc`)
+- Files prefixed with `dot-` are symlinked as dotfiles (e.g., `dot-gitconfig` → `~/.gitconfig`)
 - `dot-config/` directory contents → `~/.config/` (XDG Base Directory)
 - Per-package exclusions in `<package>/.stow-local-ignore` (e.g. `Brewfile`, `.DS_Store`)
 - Command: `stow --dotfiles --target="$HOME" common work` (or `common personal`)
@@ -79,16 +79,14 @@ Fish config lives in `common/dot-config/fish/`:
 
 **Plugins (via Fisher):** `oh-my-fish/plugin-osx`, `oh-my-fish/plugin-brew`, `oh-my-fish/plugin-extract`, `jethrokuan/z`
 
-**Local/private overrides:** `~/.config/fish/config.local.fish`, `~/.config/fish/config.private.fish`
+**Local override:** `~/.config/fish/config.local.fish` (sourced from `config.fish` if present)
 
-### Machine-Specific Customization Pattern
-Use `.local` files for machine-specific overrides (not version controlled):
+### Extending
+Use `.local` files for machine-specific overrides. Each can be kept out of version control entirely, or committed to the private overlay for machine-specific config that should still be versioned somewhere private:
 - `~/.aliases.local`
+- `~/.config/fish/config.local.fish`
 - `~/.gitconfig.local`
 - `~/.tmux.conf.local`
-- `~/.zshrc.local`
-
-Use `~/.zshrc.private` for sensitive environment variables or credentials.
 
 ### Neovim Lua Configuration Structure
 Modern Lua-based setup with lazy.nvim:
@@ -149,7 +147,7 @@ Seamless navigation between tmux panes and Neovim splits:
 ### AI Coding Assistant
 Avante.nvim is configured with OpenAI o1-preview model:
 - Provides AI-powered code suggestions and completions
-- Requires OpenAI API key (should be in `~/.zshrc.private`)
+- Requires OpenAI API key (e.g. exported from `~/.config/fish/config.local.fish` or the private overlay)
 
 ### Search Tools
 Multiple search utilities configured:
@@ -170,11 +168,11 @@ Multiple search utilities configured:
 
 ### Shell Changes
 ```bash
-# Test zshrc changes
-source ~/.zshrc
+# Reload fish config
+source ~/.config/fish/config.fish
 
 # Or start new shell
-zsh
+fish
 ```
 
 ### Neovim Changes
@@ -209,5 +207,4 @@ Core tools required (most in Brewfile):
 - Git config: `dot-gitconfig` is symlinked to `~/.gitconfig`
 - Git ignore: Global excludesfile at `~/.gitignore`
 - Git commit template: `~/.gitmessage` provides 7 rules of good commits
-- oh-my-zsh: Currently using minimal config (just git plugin, robbyrussell theme)
 - Colors: Tmux and Neovim configured for 256-color terminals
