@@ -24,10 +24,10 @@ if [ -n "$1" ]; then
   PACKAGES+=("$1")
 fi
 
-# Auto-include `local` overlay if it exists (typically a symlink to an external repo
-# like dotfiles-local on GH Enterprise — see README).
-if [ -d "$DOTFILES_DIR/local" ]; then
-  PACKAGES+=("local")
+# Auto-include `private` overlay if it exists (typically a symlink to an external repo
+# like dotfiles-private on GH Enterprise — see README).
+if [ -d "$DOTFILES_DIR/private" ]; then
+  PACKAGES+=("private")
 fi
 
 print_message "Stowing packages: ${PACKAGES[*]}"

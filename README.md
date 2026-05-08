@@ -16,21 +16,21 @@ cd ~/src/dotfiles
 echo $(which fish) | sudo tee -a /etc/shells && chsh -s $(which fish)
 ```
 
-## Local overlay (private/work-confidential config)
+## Private overlay (work-confidential config)
 For machine- or org-specific config that shouldn't live in this repo (e.g. a work
-laptop pulling from a GitHub Enterprise `dotfiles-local` repo), check out the
-external repo anywhere and symlink it as `local/` inside this repo. `setup`
-auto-detects and stows it.
+laptop pulling from a GitHub Enterprise `dotfiles-private` repo), check out the
+external repo anywhere and symlink it as `private/` inside this repo. `setup`
+auto-detects and stows it on top of `common` + your machine package.
 
 ```sh
-git clone <host>:me/dotfiles-local.git ~/src/dotfiles-local
-ln -s ~/src/dotfiles-local ~/src/dotfiles/local
+git clone <host>:me/dotfiles-private.git ~/src/dotfiles-private
+ln -s ~/src/dotfiles-private ~/src/dotfiles/private
 ./scripts/setup work
 ```
 
 The external repo follows the same conventions as the in-tree packages:
 `dot-`-prefixed files, optional `Brewfile`, optional `.stow-local-ignore`. The
-`local` symlink is gitignored so it never gets committed back to the public repo.
+`private` symlink is gitignored so it never gets committed back to the public repo.
 
 ## Customizations
 Place configuration for a specific computer or environment in local files (not version controlled):

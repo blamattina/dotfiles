@@ -17,8 +17,8 @@ if [ -n "$1" ]; then
   PACKAGES+=("$1")
 fi
 
-if [ -d "$DOTFILES_DIR/local" ]; then
-  PACKAGES+=("local")
+if [ -d "$DOTFILES_DIR/private" ]; then
+  PACKAGES+=("private")
 fi
 
 print_message "Unlinking packages: ${PACKAGES[*]}"

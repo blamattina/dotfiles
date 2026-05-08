@@ -30,4 +30,6 @@
 [gpg]
 	format = ssh
 [user]
+	email = brian@lamattina.io
+	name = Brian LaMattina
 	signingkey = /Users/blamattina/.ssh/id_rsa.pub
