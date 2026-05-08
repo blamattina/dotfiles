@@ -1,9 +1,9 @@
 Brewfile.lock.json
 .DS_Store
 
-# Symlink pointing at an external "local" overlay repo (e.g. dotfiles-local on GH Enterprise).
-# The setup script auto-stows ./local if this exists.
-/local
+# Symlink pointing at an external "private" overlay repo (e.g. dotfiles-private on GH Enterprise).
+# The setup script auto-stows ./private if this exists.
+/private
 
 # Fisher-installed plugin files — managed via fish_plugins, not committed
 common/dot-config/fish/functions/*

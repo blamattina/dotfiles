@@ -12,9 +12,9 @@ Primary shell is **fish**, configured in `common/dot-config/fish/`. Zsh config (
 - `common/` — shared across all machines (shell, editor, git, terminal configs, plus `Brewfile` of shared CLI tools and casks).
 - `work/` — work-laptop-only (e.g. Slack, Granola).
 - `personal/` — personal-laptop-only.
-- `local/` — **optional** overlay sourced from a separate repo (e.g. a private `dotfiles-local` on GitHub Enterprise for work-confidential config). Conventionally a symlink at the repo root pointing at an external clone. Auto-stowed by `scripts/setup` / `scripts/teardown` when the path exists. Listed in `.gitignore` so the symlink isn't committed.
+- `private/` — **optional** overlay sourced from a separate repo (e.g. a private `dotfiles-private` on GitHub Enterprise for work-confidential config). Conventionally a symlink at the repo root pointing at an external clone. Auto-stowed by `scripts/setup` / `scripts/teardown` when the path exists. Listed in `.gitignore` so the symlink isn't committed.
 
-Each package has its own `Brewfile` and `.stow-local-ignore`. Brewfiles live inside packages and are excluded from stow via `.stow-local-ignore`. The external `local/` repo should follow the same conventions (`dot-`-prefixed files, optional `Brewfile`, optional `.stow-local-ignore`).
+Each package has its own `Brewfile` and `.stow-local-ignore`. Brewfiles live inside packages and are excluded from stow via `.stow-local-ignore`. The external `private/` repo should follow the same conventions (`dot-`-prefixed files, optional `Brewfile`, optional `.stow-local-ignore`).
 
 ## Setup Commands
 
@@ -25,10 +25,10 @@ Each package has its own `Brewfile` and `.stow-local-ignore`. Brewfiles live ins
 ./scripts/setup personal   # personal laptop
 ./scripts/setup            # common only
 
-# Optional: link an external "local" overlay repo (e.g. work-confidential config on GH Enterprise)
-git clone <internal-host>:me/dotfiles-local.git ~/src/dotfiles-local
-ln -s ~/src/dotfiles-local ~/src/dotfiles/local
-./scripts/setup work       # auto-detects ./local and stows it
+# Optional: link an external "private" overlay repo (e.g. work-confidential config on GH Enterprise)
+git clone <internal-host>:me/dotfiles-private.git ~/src/dotfiles-private
+ln -s ~/src/dotfiles-private ~/src/dotfiles/private
+./scripts/setup work       # auto-detects ./private and stows it
 
 # Manual installation
 brew install stow
