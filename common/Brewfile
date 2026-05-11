@@ -20,6 +20,9 @@ brew 'tree'
 brew 'wget'
 brew 'z'
 
+# Languages
+brew 'rust'
+
 # Editors
 tap 'neovim/neovim'
 brew 'neovim'
