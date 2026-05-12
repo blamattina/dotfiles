@@ -1,5 +1,6 @@
 Brewfile.lock.json
 .DS_Store
+.claude/settings.local.json
 
 # Symlink pointing at an external "private" overlay repo (e.g. dotfiles-private on GH Enterprise).
 # The setup script auto-stows ./private if this exists.
