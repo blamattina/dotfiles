@@ -1,5 +1,8 @@
 # vi: ft=ruby
 # Work-only apps
 
+# Data
+brew 'snowflake-cli'
+
 cask 'granola'
 cask 'slack'

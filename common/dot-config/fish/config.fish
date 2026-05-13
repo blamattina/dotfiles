@@ -5,6 +5,11 @@ if type -q nodenv
     nodenv init - fish | source
 end
 
+# fnm
+if type -q fnm
+    fnm env --use-on-cd --shell fish | source
+end
+
 # fzf
 if type -q fzf
     fzf --fish | source
