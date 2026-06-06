@@ -4,5 +4,6 @@
 # Data
 brew 'snowflake-cli'
 
+cask 'fellow'
 cask 'granola'
 cask 'slack'
