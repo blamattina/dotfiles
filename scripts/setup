@@ -54,5 +54,10 @@ stow --dotfiles --target="$HOME" --dir="$DOTFILES_DIR" "${PACKAGES[@]}"
 print_message "Installing Fisher plugins..."
 fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update"
 
+if command -v herdr &>/dev/null; then
+  print_message "Installing herdr plugins..."
+  herdr plugin install blamattina/herdr-auto-rename --yes
+fi
+
 print_message "Done! To set fish as your default shell:"
 echo "  echo \$(which fish) | sudo tee -a /etc/shells && chsh -s \$(which fish)"
