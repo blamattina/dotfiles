@@ -1,4 +1,5 @@
 set -gx EDITOR nvim
+fish_add_path ~/.cargo/bin
 
 # nodenv
 if type -q nodenv
