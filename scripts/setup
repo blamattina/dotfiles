@@ -62,6 +62,8 @@ if command -v herdr &>/dev/null; then
   herdr plugin install blamattina/herdr-auto-rename --yes
 
   print_message "Installing herdr agent integrations..."
+  # herdr won't create the pi extensions dir itself; ensure it exists first
+  mkdir -p "$HOME/.pi/agent/extensions"
   for integration in pi claude codex opencode; do
     herdr integration install "$integration"
   done
