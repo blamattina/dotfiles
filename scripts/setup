@@ -57,6 +57,11 @@ fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/fun
 if command -v herdr &>/dev/null; then
   print_message "Installing herdr plugins..."
   herdr plugin install blamattina/herdr-auto-rename --yes
+
+  print_message "Installing herdr agent integrations..."
+  for integration in pi claude codex opencode; do
+    herdr integration install "$integration"
+  done
 fi
 
 print_message "Done! To set fish as your default shell:"
