@@ -31,6 +31,9 @@ brew 'rust'
 tap 'neovim/neovim'
 brew 'neovim'
 
+# AI
+brew 'pi-coding-agent'
+
 # Personal Taps
 tap 'blamattina/formulae'
 
@@ -47,6 +50,10 @@ brew 'selene'
 # Casks
 cask '1password'
 cask 'bartender'
+cask 'chatgpt'
+cask 'claude'
+cask 'claude-code'
+cask 'codex'
 cask 'conductor'
 cask 'dropbox'
 cask 'ghostty'
@@ -59,4 +66,4 @@ cask 'raycast'
 cask 'rectangle'
 cask 'steermouse'
 cask 'ticktick'
-cask 'todoist'
+cask 'todoist-app'
