@@ -51,6 +51,9 @@ done
 print_message "Linking dotfiles..."
 stow --dotfiles --target="$HOME" --dir="$DOTFILES_DIR" "${PACKAGES[@]}"
 
+print_message "Loading launch agents..."
+launchctl load "$HOME/Library/LaunchAgents/com.blamattina.herdr.plist" 2>/dev/null || true
+
 print_message "Installing Fisher plugins..."
 fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update"
 
