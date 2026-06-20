@@ -1,0 +1,18 @@
+onboarding = false
+
+[theme]
+name = "tokyo-night"
+
+[terminal]
+default_shell = "/opt/homebrew/bin/fish"
+
+[keys]
+prefix = "ctrl+space"
+
+[ui]
+mouse_capture = true
+confirm_close = true
+agent_panel_scope = "all"
+
+[experimental]
+pane_history = false
