@@ -2,6 +2,9 @@ onboarding = false
 
 [theme]
 name = "tokyo-night"
+auto_switch = true
+dark_name = "tokyo-night"
+light_name = "tokyo-night-day"
 
 [terminal]
 default_shell = "/opt/homebrew/bin/fish"
