@@ -51,6 +51,28 @@ done
 print_message "Linking dotfiles..."
 stow --dotfiles --target="$HOME" --dir="$DOTFILES_DIR" "${PACKAGES[@]}"
 
+# On the work laptop, route repos under ~/src/personal/ to a personal git identity.
+# The includeIf must live at the end of ~/.gitconfig (read last) to override the work
+# [user] block; the personal settings themselves are stowed at ~/.config/git/personal.
+if [[ " ${PACKAGES[*]} " == *" work "* ]]; then
+  mkdir -p "$HOME/src/personal"
+  if ! grep -q 'gitdir:~/src/personal/' "$HOME/.gitconfig" 2>/dev/null; then
+    print_message "Adding personal git identity include for ~/src/personal/..."
+    printf '\n[includeIf "gitdir:~/src/personal/"]\n\tpath = ~/.config/git/personal\n' >> "$HOME/.gitconfig"
+  fi
+
+  # Personal GitHub key used by ~/src/personal/ repos for both auth and SSH commit signing.
+  # The private key is a secret, so it's never committed — generate it locally if missing.
+  if [ ! -f "$HOME/.ssh/id_personal_github" ]; then
+    print_message "Generating personal GitHub SSH key (you'll be prompted for a passphrase)..."
+    ssh-keygen -t ed25519 -C "public-github" -f "$HOME/.ssh/id_personal_github"
+    print_message "Add the new key to your PERSONAL GitHub account (https://github.com/settings/keys):"
+    echo "  gh ssh-key add ~/.ssh/id_personal_github.pub --title \"\$(hostname) personal\""
+    echo "  gh ssh-key add ~/.ssh/id_personal_github.pub --type signing --title \"\$(hostname) personal signing\""
+    echo "  (run these while 'gh' is authenticated as your personal account)"
+  fi
+fi
+
 print_message "Loading launch agents..."
 launchctl load "$HOME/Library/LaunchAgents/com.blamattina.herdr.plist" 2>/dev/null || true
 

@@ -1,0 +1,6 @@
+[user]
+	email = brian@lamattina.io
+	name = Brian LaMattina
+	signingkey = ~/.ssh/id_personal_github.pub
+[url "git@personal-github:"]
+	insteadOf = git@github.com:
