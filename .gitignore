@@ -21,3 +21,10 @@ common/dot-config/fish/completions/
 !common/dot-config/fish/functions/fzf-checkout.fish
 !common/dot-config/fish/functions/pipe-git-command-to-diff-so-fancy.fish
 !common/dot-config/fish/conf.d/aliases.fish
+
+# herdr runtime state — logs, session, plugin cache (lives inside the stowed config dir)
+common/dot-config/herdr/*.log
+common/dot-config/herdr/session.json
+common/dot-config/herdr/release-notes.json
+common/dot-config/herdr/plugins.json
+common/dot-config/herdr/plugins/
