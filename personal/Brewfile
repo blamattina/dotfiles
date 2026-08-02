@@ -1,5 +1,6 @@
 # vi: ft=ruby
 # Personal-machine-only apps
 
+cask '1password-cli'
 cask 'discord'
 cask 'steam'

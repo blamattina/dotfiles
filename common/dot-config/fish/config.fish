@@ -31,6 +31,11 @@ if type -q direnv
     direnv hook fish | source
 end
 
+# 1Password CLI completions
+if type -q op
+    op completion fish | source
+end
+
 fish_vi_key_bindings
 
 # Set empty terminal title for tmux
