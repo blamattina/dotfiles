@@ -9,6 +9,14 @@
         <string>/opt/homebrew/bin/herdr</string>
         <string>server</string>
     </array>
+    <!-- launchd's default PATH lacks Homebrew and ~/.local/bin, so plugin
+         event commands (e.g. auto-rename shelling out to `claude`) can't find
+         their binaries. Give the server a PATH that includes them. -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/Users/blamattina/.local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
     <key>RunAtLoad</key>
     <true/>
     <key>KeepAlive</key>
