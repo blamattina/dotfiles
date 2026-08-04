@@ -1,6 +1,11 @@
 # vi: ft=ruby
 # Personal-machine-only apps
 
+brew 'kubectl'
+brew 'talosctl'
+
 cask '1password-cli'
+cask 'bambu-studio'
 cask 'discord'
 cask 'steam'
+cask 'tailscale-app'
