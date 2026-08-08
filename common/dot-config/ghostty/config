@@ -1,4 +1,5 @@
-font-family = SauceCodePro NFM SemiBold
+font-family = Atkinson Hyperlegible Mono
+font-family = SauceCodePro Nerd Font Mono
 font-size = 16
 
 theme = light:TokyoNight Day,dark:TokyoNight
